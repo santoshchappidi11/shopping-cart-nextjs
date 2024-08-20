@@ -7,7 +7,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="h-auto w-full border border-gray-200 flex justify-between items-center px-20 fixed top-0 bg-white">
+    <div className="h-auto w-full border border-gray-200 flex justify-between items-center px-20 fixed top-0 bg-white z-20">
       <div className="w-auto">
         <h1 className="text-3xl font-bold cursor-pointer">
           SHOP<span className="text-red-600">p</span>
