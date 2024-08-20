@@ -10,7 +10,7 @@ const HomePage = () => {
   const banners = [banner1, banner2];
 
   return (
-    <>
+    <div className="">
       <div className="h-auto w-11/12 m-auto mt-36 mb-20">
         {banners.map((banner, i) => (
           <div key={i} className="mb-0 h-auto">
@@ -31,13 +31,13 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between items-start relative">
+      <div className="flex justify-between items-start relative px-5">
         <Filter />
         <div className="w-4/5">
           <AllProducts />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

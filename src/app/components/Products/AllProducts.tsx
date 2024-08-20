@@ -27,7 +27,7 @@ const AllProducts = () => {
   }, []);
 
   return (
-    <div className=" h-auto w-full flex justify-around items-start flex-row flex-wrap">
+    <div className=" h-auto w-full flex justify-between items-start flex-row flex-wrap">
       {allProducts?.map((item: product) => (
         <SingleProduct item={item} key={item.id} />
       ))}
