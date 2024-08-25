@@ -2,26 +2,34 @@
 
 import React, { useEffect, useState } from "react";
 import shoppingData from "@/app/store/data";
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import SingleProduct from "./SingleProduct";
 
 const AllProducts = () => {
   interface product {
     id: number;
     name: string;
+    fullName: string;
     image: StaticImageData;
     price: string;
     rating: number;
     numReviews: number;
     inStock: boolean;
     delivery: boolean;
-    viewId: string;
+    brand: string;
+    color: string;
+    connectivity: string;
+    modelname: string;
+    formfactor: string;
+    description: string;
+    // viewId: string;
   }
 
   const [allProducts, setAllProducts] = useState<product[]>([]);
 
   useEffect(() => {
     if (shoppingData?.length) {
+      localStorage.setItem("products", JSON.stringify(shoppingData));
       setAllProducts(shoppingData);
     }
   }, []);

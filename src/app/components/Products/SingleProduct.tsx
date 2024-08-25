@@ -1,3 +1,5 @@
+// "use client";
+
 import {
   faCartShopping,
   faShoppingBag,
@@ -5,19 +7,27 @@ import {
   faTruckFast,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { useRouter } from "next/router";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface product {
   id: number;
   name: string;
+  fullName: string;
   image: StaticImageData;
   price: string;
   rating: number;
   numReviews: number;
   inStock: boolean;
   delivery: boolean;
-  viewId: string;
+  brand: string;
+  color: string;
+  connectivity: string;
+  modelname: string;
+  formfactor: string;
+  description: string;
 }
 
 interface singleProductProps {
@@ -25,8 +35,11 @@ interface singleProductProps {
 }
 
 const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
+  // const router = useRouter();
+
   return (
-    <div
+    <Link
+      href={`/ProductDetails/${item?.id}`}
       key={item.id}
       className="border border-gray-100 h-auto w-3/12 mx-8 mb-5 px-3 py-3 rounded-md bg-gray-100"
     >
@@ -71,7 +84,7 @@ const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
