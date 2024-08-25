@@ -4,8 +4,12 @@ import React, { useEffect, useState } from "react";
 import shoppingData from "@/app/store/data";
 import { StaticImageData } from "next/image";
 import SingleProduct from "./SingleProduct";
+import { useMyContext } from "@/app/context/ShoppingCartContext";
 
 const AllProducts = () => {
+  const { products, sortByPrice, inStock, delivery, searchQuery } =
+    useMyContext();
+
   interface product {
     id: number;
     name: string;
@@ -34,9 +38,41 @@ const AllProducts = () => {
     }
   }, []);
 
+  const transformedProducts = () => {
+    let newFilteredProducts = products;
+
+    if (sortByPrice) {
+      newFilteredProducts = newFilteredProducts.sort((a, b) => {
+        const priceA = parseFloat(a.price);
+        const priceB = parseFloat(b.price);
+
+        return sortByPrice === "lowToHigh" ? priceA - priceB : priceB - priceA;
+      });
+    }
+
+    if (inStock) {
+      newFilteredProducts = newFilteredProducts.filter((item) => item.inStock);
+    }
+
+    if (delivery) {
+      newFilteredProducts = newFilteredProducts.filter((item) => item.delivery);
+    }
+
+    if (searchQuery) {
+      newFilteredProducts = newFilteredProducts.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery)
+      );
+    }
+
+    return newFilteredProducts;
+  };
+
   return (
     <div className=" h-auto w-full flex justify-between items-start flex-row flex-wrap">
-      {allProducts?.map((item: product) => (
+      {/* {allProducts?.map((item: product) => (
+        <SingleProduct item={item} key={item.id} />
+      ))} */}
+      {transformedProducts()?.map((item: product) => (
         <SingleProduct item={item} key={item.id} />
       ))}
     </div>
