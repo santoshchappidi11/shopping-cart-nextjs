@@ -1,6 +1,8 @@
 "use client";
 
 import { useMyContext } from "@/app/context/ShoppingCartContext";
+import { faTruck, faTruckFast } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image, { StaticImageData } from "next/image";
 import { useParams } from "next/navigation";
 // import { useRouter } from "next/router";
@@ -62,107 +64,116 @@ const SingleProductDetails = () => {
   return (
     <>
       <div className="border border-black h-auto w-full py-5 px-10">
-        <div className="border border-red-500 h-auto w-full flex justify-start items-center">
-          <div className="h-96 w-1/2">
-            {singleProduct?.image && (
-              <Image
-                src={singleProduct?.image}
-                alt="product"
-                className="h-full w-full object-contain"
-              />
-            )}
+        <div className=" h-auto w-full flex justify-start items-start ">
+          <div className=" sticky top-0 h-screen w-3/5 flex justify-start items-center pr-10">
+            <div className="h-3/4 w-full border border-gray-300 py-12 bg-white rounded-md">
+              {singleProduct?.image && (
+                <Image
+                  src={singleProduct?.image}
+                  alt="product"
+                  className="h-full w-full object-contain"
+                />
+              )}
+            </div>
           </div>
-          <div className="h-auto w-full border border-black">
-            <div className="h-auto border border-green-500">
-              <h2 className="font-extrabold text-2xl pb-5">
+          <div className="h-auto w-2/5">
+            <div className="h-auto ">
+              <h2 className="font-semibold text-2xl pb-5">
                 {singleProduct?.fullName}
               </h2>
               <div className="">
                 {/* <Rating rating={rating} numReviews={numReviews} /> */}
               </div>
-              <div className="font-bold text-2xl pb-5">
+              <div className="font-medium text-2xl pb-5">
                 <span>₹ {singleProduct?.price}</span>
               </div>
               <div className="">
-                <p className="pb-5 font-bold text-lg">
+                <p className="pb-5 font-semibold text-lg">
                   Status:
                   <span className="ml-2">
                     {singleProduct?.inStock ? (
-                      <span className="bg-green-500 text-white px-2 py-1 rounded-md text-base font-semibold">
+                      <span className="bg-green-500 text-white px-2 py-1 rounded-md text-base font-medium">
                         {" "}
                         InStock
                       </span>
                     ) : (
-                      <span className="bg-gray-500 text-white px-2 py-1 rounded-md text-base font-semibold">
+                      <span className="bg-gray-400 text-white px-2 py-1 rounded-md text-base font-medium">
                         Out of stock
                       </span>
                     )}
                   </span>
                 </p>
+
+                <div className="my-10">
+                  <p className="text-base italic border-b border-b-gray-300">
+                    {singleProduct?.delivery
+                      ? "Fast delivery"
+                      : "delivery in 4 days"}{" "}
+                    {singleProduct?.delivery ? (
+                      <FontAwesomeIcon
+                        icon={faTruckFast}
+                        size="lg"
+                        className="text-red-700"
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faTruck}
+                        size="lg"
+                        className="text-red-700"
+                      />
+                    )}{" "}
+                  </p>
+                </div>
               </div>
-              {/* <div className="">
-            {cart.some((item) => item.id === product.id) ? (
-              <button
-                className={styles["remove-btn"]}
-                onClick={() =>
-                  dispatch({
-                    type: "REMOVE_FROM_CART",
-                    payload: product,
-                  })
-                }
-              >
-                Remove from cart
-              </button>
-            ) : (
-              <button
-                className={inStock ? styles["add-btn"] : styles["no-add-btn"]}
-                onClick={() =>
-                  dispatch({
-                    type: "ADD_TO_CART",
-                    payload: product,
-                  })
-                }
-              >
-                Add to cart
-              </button>
-            )} */}
+
+              <div className="">
+                <button className="h-auto w-auto p-2  bg-orange-600  text-white rounded-md">
+                  Remove from cart
+                </button>
+                <button className="h-auto w-auto p-2   bg-blue-600 text-white rounded-md">
+                  Add to cart
+                </button>
+              </div>
             </div>
-            <div className="border border-green-500 h-auto w-4/12 p2-5">
-              <div className="h-auto w-full flex justify-between items-center py-1">
-                <label className="font-bold">Brand</label>
+            <div className="h-auto w-4/5 p2-5 my-10">
+              <div className="h-auto w-full flex justify-between items-center py-2">
+                <label className="font-semibold">Brand</label>
                 <span className="w-2/6 text-left"> {singleProduct?.brand}</span>
               </div>
-              <div className="h-auto w-full flex justify-between items-center py-1">
-                <label className="font-bold">Color</label>
+              <div className="h-auto w-full flex justify-between items-center py-2">
+                <label className="font-semibold">Color</label>
                 <span className="w-2/6 text-left"> {singleProduct?.color}</span>
               </div>
-              <div className="h-auto w-full flex justify-between items-center py-1">
-                <label className="font-bold">Connectivity Technology</label>
+              <div className="h-auto w-full flex justify-between items-center py-2">
+                <label className="font-semibold">Connectivity Technology</label>
                 <span className="w-2/6 text-left">
                   {" "}
                   {singleProduct?.connectivity}
                 </span>
               </div>
-              <div className="h-auto w-full flex justify-between items-center py-1">
-                <label className="font-bold">Model Name</label>
+              <div className="h-auto w-full flex justify-between items-center py-2">
+                <label className="font-semibold">Model Name</label>
                 <span className="w-2/6 text-left">
                   {" "}
                   {singleProduct?.modelname}
                 </span>
               </div>
               <div className="h-auto w-full flex justify-between items-center py-1">
-                <label className="font-bold">Ear Placement</label>
+                <label className="font-semibold">Ear Placement</label>
                 <span className="w-2/6 text-left">
                   {" "}
                   {singleProduct?.formfactor}
                 </span>
               </div>
             </div>
+
+            <div className="pt-5 pb-2">
+              <h4 className="text-xl font-bold">Product Description</h4>
+              <span className="text-base font-light">
+                {singleProduct?.description}
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="pt-5 pb-2">
-          <h4 className="text-xl font-bold">Product Description</h4>
-          <span className="text-lg">{singleProduct?.description}</span>
         </div>
       </div>
     </>
