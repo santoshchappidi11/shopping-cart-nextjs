@@ -1,5 +1,6 @@
 "use client";
 
+import Rating from "@/app/components/Rating/Rating";
 import { useMyContext } from "@/app/context/ShoppingCartContext";
 import { faTruck, faTruckFast } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +10,7 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const SingleProductDetails = () => {
-  const { inStock, delivery } = useMyContext();
+  // const { inStock, delivery } = useMyContext();
 
   const { id } = useParams();
   const singleProductId = id;
@@ -63,7 +64,7 @@ const SingleProductDetails = () => {
 
   return (
     <>
-      <div className="border border-black h-auto w-full py-5 px-10">
+      <div className="h-auto w-full py-5 px-10">
         <div className=" h-auto w-full flex justify-start items-start ">
           <div className=" sticky top-0 h-screen w-3/5 flex justify-start items-center pr-10">
             <div className="h-3/4 w-full border border-gray-300 py-12 bg-white rounded-md">
@@ -81,8 +82,11 @@ const SingleProductDetails = () => {
               <h2 className="font-semibold text-2xl pb-5">
                 {singleProduct?.fullName}
               </h2>
-              <div className="">
-                {/* <Rating rating={rating} numReviews={numReviews} /> */}
+              <div className="my-5 border-t border-t-slate-200 border-b border-b-slate-200 py-5">
+                <Rating
+                  rating={singleProduct?.rating || 0}
+                  numReviews={singleProduct?.numReviews || 0}
+                />
               </div>
               <div className="font-medium text-2xl pb-5">
                 <span>₹ {singleProduct?.price}</span>

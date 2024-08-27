@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
+import Rating from "../Rating/Rating";
 
 interface product {
   id: number;
@@ -52,11 +53,12 @@ const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
       </div>
       <div className="px-2 py-2">
         <h1 className="text-xl font-medium my-2">{item.name}</h1>
-        <p>
+        <p className="mb-1">
           <FontAwesomeIcon icon={faCartShopping} size="sm" />{" "}
           <span className="text-base">₹{item.price}</span>
         </p>
-        <div>
+        <Rating rating={item.rating} numReviews={item.numReviews} />
+        <div className="">
           <span
             className={
               item.inStock
@@ -66,7 +68,7 @@ const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
           >
             {item.inStock ? "In Stock" : "Out of stock"}
           </span>
-          <p className="text-sm">
+          <p className="text-sm ">
             {item.delivery ? (
               <FontAwesomeIcon icon={faTruckFast} size="sm" />
             ) : (
