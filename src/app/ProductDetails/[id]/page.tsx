@@ -130,7 +130,7 @@ const SingleProductDetails = () => {
                 </div>
               </div>
 
-              <div className="">
+              <div className="border border-black my-1">
                 <button className="h-auto w-auto p-2  bg-orange-600  text-white rounded-md">
                   Remove from cart
                 </button>
