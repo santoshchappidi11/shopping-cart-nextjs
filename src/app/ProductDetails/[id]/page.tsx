@@ -15,7 +15,7 @@ const SingleProductDetails = () => {
   const { id } = useParams();
   const singleProductId = id;
 
-  console.log(singleProductId, "id here");
+  // console.log(singleProductId, "id here");
 
   interface product {
     id: number;
@@ -40,6 +40,7 @@ const SingleProductDetails = () => {
   );
 
   const [singleProduct, setSingleProduct] = useState<product>();
+  const [isAddToCart, setIsAddToCart] = useState(false);
 
   useEffect(() => {
     const storedProducts = localStorage.getItem("products");
@@ -61,6 +62,14 @@ const SingleProductDetails = () => {
       }
     }
   }, [singleProductId, localStorageProducts]);
+
+  const handleAddToCart = () => {
+    setIsAddToCart(true);
+  };
+
+  const handleRemoveFromCart = () => {
+    setIsAddToCart(false);
+  };
 
   return (
     <>
@@ -130,13 +139,22 @@ const SingleProductDetails = () => {
                 </div>
               </div>
 
-              <div className="border border-black my-1">
-                <button className="h-auto w-auto p-2  bg-orange-600  text-white rounded-md">
-                  Remove from cart
-                </button>
-                <button className="h-auto w-auto p-2   bg-blue-600 text-white rounded-md">
-                  Add to cart
-                </button>
+              <div className="my-1">
+                {isAddToCart ? (
+                  <button
+                    className="h-auto w-auto p-2  bg-orange-600  text-white rounded-sm"
+                    onClick={handleRemoveFromCart}
+                  >
+                    Remove from cart
+                  </button>
+                ) : (
+                  <button
+                    className="h-auto w-auto p-2   bg-blue-600 text-white rounded-sm"
+                    onClick={handleAddToCart}
+                  >
+                    Add to cart
+                  </button>
+                )}
               </div>
             </div>
             <div className="h-auto w-4/5 p2-5 my-10">
