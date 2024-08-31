@@ -20,6 +20,7 @@ interface product {
   modelname: string;
   formfactor: string;
   description: string;
+  qty: number;
 }
 
 interface myContextData {

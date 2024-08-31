@@ -34,16 +34,18 @@ const Navbar = () => {
           />
         </div>
       </div>
-      <div className="w-auto flex justify-center items-center">
-        <FontAwesomeIcon
-          icon={faShoppingBag}
-          size="sm"
-          className="h-10 w-10 cursor-pointer"
-        />
-        <p className="cursor-pointer text-lg">
-          <b className="text-2xl mx-1"> {cartProducts?.length}</b>
-        </p>
-      </div>
+      <Link href={"./CartPage"}>
+        <div className="w-auto flex justify-center items-center">
+          <FontAwesomeIcon
+            icon={faShoppingBag}
+            size="sm"
+            className="h-10 w-10 cursor-pointer"
+          />
+          <p className="cursor-pointer text-lg">
+            <b className="text-2xl mx-1">{cartProducts?.length}</b>
+          </p>
+        </div>
+      </Link>
     </div>
   );
 };
