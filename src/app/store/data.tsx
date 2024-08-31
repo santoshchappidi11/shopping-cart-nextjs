@@ -28,7 +28,7 @@ const shoppingData = [
     formfactor: "Over Ear",
     description:
       "Advanced Noise Cancellation Technology: Maintain your focus with Life Q30’s hybrid active noise cancellation. Dual noise-detecting microphones pick up and filter out up to 95% of low-frequency ambient sound to ensure nothing distracts you from your music. Ultimate Noise Cancellation Experience: Customize Life Q30’s noise cancellation with 3 modes—Transport minimizes airplane engine noise, Outdoor reduces traffic and wind, and Indoor dampens the sound of busy offices with people talking in the background. Hi-Res Music: Hear every detail of your favorite songs thanks to Life Q30’s 40mm drivers. The highly-flexible silk diaphragms reproduce thumping bass and crisp treble that extends up to 40kHz for improved clarity.",
-    // viewId: "h1",
+    qty: 1,
   },
   {
     id: 2,
@@ -48,7 +48,7 @@ const shoppingData = [
     formfactor: "On Ear",
     description:
       "Color:Pink Introducing the JBL TUNE600BTNC active noise-cancelling wireless on-ear headphones, a flat-folding lightweight and compact solution for everyday use. The JBL TUNE600BTNC feature 32 mm JBL drivers that helps deliver JBL Pure Bass sound. Sound that can be enjoyed without unnecessary noise for more than 12 hours wirelessly and can be fully recharged in only 2 hours. And thanks to the additional detachable cable, music can be enjoyed endlessly in wired mode, with or without Active Noise-Cancelling. Made with durable materials and designed in four fresh colors, the JBL TUNE600BTNC allow you to connect to your world quickly thanks to buttons on the ear cups that allow for easy hands-free management of calls and music.",
-    // viewId: "h2",
+    qty: 1,
   },
   {
     id: 3,
@@ -67,7 +67,7 @@ const shoppingData = [
     formfactor: "Over Ear",
     description:
       "You don’t have to shell out hundreds of dollars for full, rich sound and wireless freedom. Hesh Evo gives you all that and much more for far less than other so-called “premium” headphones. The 4th generation Hesh Evo combines a proven design with all the features you need and none that you don’t. All controls — call, track change, and volume — are right at your fingertips with easy-to-use tactile buttons. Don’t remember where you left your headphones? Don’t sweat it — Hesh Evo comes with Tile finding technology built-in. Battery life is an impressive 22 hours. Even more impressive, Rapid Charge capability provides 3 hours of listening time on only 10 minutes of charge. Hesh Evo is travel-ready, too. It folds flat to fit perfectly into your bag.",
-    // viewId: "h3",
+    qty: 1,
   },
   {
     id: 4,
@@ -87,7 +87,7 @@ const shoppingData = [
     formfactor: "Over Ear",
     description:
       "The Future is Wireless- Foldable Over-Ear Bluetooth Headphones are designed from Californian engineers to provide you with premium experience and revolutionize your imagination for wireless headphones! Hands-Free Calls are supported! With P2 headphones, you will never miss any calls. Accept or decline incoming calls while you are wearing them. Enjoy long wireless playtime for your Playlists, Movies and Videos without any lag and distortion! Improved bluetooth connection V5.0 with range up to 33ft and possibility to have 2 devices paired simultaneously. Wireless headphone which we built with the highest quality premium materials in order to bring your daily life the comfort you need. Great headphone for the library, office hours, travel, gym, jogging etc. So many options with PowerLocus over ear headphones! Use them with Bluetooth, AUX cable, Micro SD/TF card and even FM radio mode. Compatible with all smartphones, laptops, tablets, PC - iPhone, Samsung, Nexus, Huawei, Macbook, iPod, iPad etc.",
-    // viewId: "h4",
+    qty: 1,
   },
   {
     id: 5,
@@ -107,7 +107,7 @@ const shoppingData = [
     formfactor: "On Ear",
     description:
       "If your child is getting one-on-one online tutoring, this pair of headphones will enable them to stay fully focused while talking using the built-in mic and phone call capabilities. The kids headphones with microphone intelligently free up your kids, hands to do their work and simultaneously keeps them off their phone while working. Wander freely with Bluetooth 5.0 technology and see where the music will take you! Or feel free to do things around the house while youre on the call - the choice is yours! Its always better to have options, which is why you can either talk and listen continuously for 20 hrs on one charge, or if youre staying put, just plug-in using the Aux jack to charge and get an uninterrupted signal simultaneously. We all know kids can be tough on their belongings, which is why we designed the iClever youth headphones to be capable of withstanding all sorts of abuse. No more broken headphones",
-    // viewId: "h5",
+    qty: 1,
   },
   {
     id: 6,
@@ -127,7 +127,7 @@ const shoppingData = [
     formfactor: "On Ear",
     description:
       "safe and soft material witout any sharp corner protects your kids from any scratch injury. The headphone is durable which allows to be twisted or bent, built-in volume limiter at a level of 103db avoid heearing injure and could also be used in the trains and aeroplanes.",
-    // viewId: "h6",
+    qty: 1,
   },
   {
     id: 7,
@@ -147,7 +147,7 @@ const shoppingData = [
     formfactor: "In Ear",
     description:
       "Crusher offers an audio experience unlike any other on the market – one that puts you front row for your favorite music and movies. Utilizing two full-range 40mm audio drivers and additional dual bass drivers, crusher transforms your audio into an immersive experience you don’t just hear, you feel. Pair that with wireless technology and up to 40 hours of battery life, and you have a Premium Bluetooth headphone with powerful bass you can feel",
-    // viewId: "h7",
+    qty: 1,
   },
   {
     id: 8,
@@ -167,7 +167,7 @@ const shoppingData = [
     formfactor: "Over Ear",
     description:
       "Inspiration. Motivation. Concentration. With excellent Active Noise Canceling (ANC) and clear sound for calls, these Philips H9505 wireless over-ear headphones have you covered.",
-    // viewId: "h8",
+    qty: 1,
   },
   {
     id: 9,
@@ -187,7 +187,7 @@ const shoppingData = [
     formfactor: "On Ear",
     description:
       "Get dynamic sound and all-day listening in a wireless headphone The zero-compromise wh-ch510 wireless headphones feature an extra-long battery life of up to 35 hours 30mm drivers bring crisp clear sound No matter what you’re listening to Make hands-free calls with the built-in microphone and recharge with the updated USB-C connection.",
-    // viewId: "h9",
+    qty: 1,
   },
   {
     id: 10,
@@ -207,7 +207,7 @@ const shoppingData = [
     formfactor: "Over Ear",
     description:
       "Beats studio3 Wireless headphones deliver a premium listening experience with Pure Adaptive Noice Canceling (Pure ANC) to actively block external noice and real-time audio calibration to preserve clarity, range and emotion. ",
-    // viewId: "h10",
+    qty: 1,
   },
 ];
 

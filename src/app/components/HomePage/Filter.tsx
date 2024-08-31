@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useMyContext } from "@/app/context/ShoppingCartContext";
 
 const Filter = () => {
@@ -128,4 +128,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default memo(Filter);

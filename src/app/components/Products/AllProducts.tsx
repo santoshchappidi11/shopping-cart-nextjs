@@ -26,15 +26,16 @@ const AllProducts = () => {
     modelname: string;
     formfactor: string;
     description: string;
+    qty: number;
     // viewId: string;
   }
 
-  const [allProducts, setAllProducts] = useState<product[]>([]);
+  // const [allProducts, setAllProducts] = useState<product[]>([]);
 
   useEffect(() => {
     if (shoppingData?.length) {
       localStorage.setItem("products", JSON.stringify(shoppingData));
-      setAllProducts(shoppingData);
+      // setAllProducts(shoppingData);
     }
   }, []);
 

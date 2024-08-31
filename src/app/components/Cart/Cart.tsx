@@ -11,6 +11,8 @@ import CartQuantity from "./CartQuantity";
 const Cart = () => {
   const { cartProducts, dispatch } = useMyContext();
 
+  console.log(cartProducts, "cart prod");
+
   const [total, setTotal] = useState<number>();
   const [discountedTotal, setDiscountedTotal] = useState<number>();
   const [actualDiscount, setActualDiscount] = useState<number>();
@@ -22,7 +24,7 @@ const Cart = () => {
     maximumFractionDigits: 2,
   };
 
-  //   CALCULATE TOTAL PRICE
+  // CALCULATE TOTAL PRICE
   useEffect(() => {
     if (cartProducts) {
       const allPrices = cartProducts.reduce<number>(
@@ -39,7 +41,7 @@ const Cart = () => {
     }
   }, [cartProducts, total]);
 
-  //REMOVE PRODUCT FROM CART
+  // REMOVE PRODUCT FROM CART
   const handleRemoveFromCart = (product: any) => {
     dispatch({
       type: "REMOVE_FROM_CART",
@@ -47,6 +49,7 @@ const Cart = () => {
     });
   };
 
+  // CLEAR/CHECKOUT CART
   const handleCheckoutCart = () => {
     dispatch({
       type: "CLEAR_CART",
@@ -82,7 +85,10 @@ const Cart = () => {
                 <div className="w-1/5">
                   <p>{item.name}</p>
                 </div>
-                <CartQuantity />
+                <CartQuantity
+                  // handleRemoveFromCart={handleRemoveFromCart}
+                  item={item}
+                />
                 <div>
                   <span>₹ {item?.price}</span>
                 </div>
