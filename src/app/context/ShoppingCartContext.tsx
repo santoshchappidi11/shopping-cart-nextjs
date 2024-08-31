@@ -24,6 +24,7 @@ interface product {
 
 interface myContextData {
   products: product[];
+  cartProducts: product[];
   connectivity: string;
   sortByPrice: string;
   inStock: boolean;
@@ -37,6 +38,7 @@ const shoppingContext = createContext<myContextData | undefined>(undefined);
 
 const initialState = {
   products: shoppingData,
+  cart: [],
 };
 
 const filterInitialState = {
@@ -52,30 +54,43 @@ const reducer = (state: any, action: any) => {
     case "ADD_TO_CART": {
       return {
         ...state,
+        cart: [...state.cart, { ...action.payload, qty: 1 }],
       };
     }
 
     case "REMOVE_FROM_CART": {
       return {
         ...state,
+        cart: state.cart.filter((item: any) => item.id != action.payload.id),
       };
     }
 
     case "CLEAR_CART": {
       return {
         ...state,
+        cart: [],
       };
     }
 
     case "INCREMENT_QTY": {
       return {
         ...state,
+        cart: state.cart.filter((item: any) =>
+          item.id === action.payload.id ? item.qty++ : item.qty
+        ),
       };
     }
 
     case "DECREMENT_QTY": {
       return {
         ...state,
+        cart: state.cart.filter((item: any) =>
+          item.id === action.payload.id
+            ? item.qty === 1
+              ? item.id !== action.payload.id
+              : item.qty--
+            : item.qty
+        ),
       };
     }
 
@@ -147,6 +162,7 @@ export const ShoppingProvider = ({ children }: { children: ReactNode }) => {
     <shoppingContext.Provider
       value={{
         products: state.products,
+        cartProducts: state.cart,
         connectivity: filterState.connectivity,
         sortByPrice: filterState.sortByPrice,
         inStock: filterState.inStock,

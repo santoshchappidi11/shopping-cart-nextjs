@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/app/components/Navbar/Navbar";
 import Rating from "@/app/components/Rating/Rating";
 import { useMyContext } from "@/app/context/ShoppingCartContext";
 import { faTruck, faTruckFast } from "@fortawesome/free-solid-svg-icons";
@@ -10,12 +11,12 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const SingleProductDetails = () => {
-  // const { inStock, delivery } = useMyContext();
+  const { cartProducts, dispatch } = useMyContext();
+
+  console.log(cartProducts, "cart products");
 
   const { id } = useParams();
   const singleProductId = id;
-
-  // console.log(singleProductId, "id here");
 
   interface product {
     id: number;
@@ -63,20 +64,30 @@ const SingleProductDetails = () => {
     }
   }, [singleProductId, localStorageProducts]);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (product: any) => {
     setIsAddToCart(true);
+
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: product,
+    });
   };
 
-  const handleRemoveFromCart = () => {
+  const handleRemoveFromCart = (product: any) => {
     setIsAddToCart(false);
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: product,
+    });
   };
 
   return (
     <>
-      <div className="h-auto w-full py-5 px-10">
+      <Navbar />
+      <div className="h-auto w-full py-5 px-10 mt-20">
         <div className=" h-auto w-full flex justify-start items-start ">
-          <div className=" sticky top-0 h-screen w-3/5 flex justify-start items-center pr-10">
-            <div className="h-3/4 w-full border border-gray-300 py-12 bg-white rounded-md">
+          <div className=" sticky top-2 h-screen w-3/5 flex justify-start items-center pr-10 ">
+            <div className="h-4/5 w-full border border-gray-300 py-12 bg-white rounded-md">
               {singleProduct?.image && (
                 <Image
                   src={singleProduct?.image}
@@ -86,8 +97,8 @@ const SingleProductDetails = () => {
               )}
             </div>
           </div>
-          <div className="h-auto w-2/5">
-            <div className="h-auto ">
+          <div className="h-auto w-2/5 mt-16">
+            <div className="h-auto">
               <h2 className="font-semibold text-2xl pb-5">
                 {singleProduct?.fullName}
               </h2>
@@ -140,17 +151,17 @@ const SingleProductDetails = () => {
               </div>
 
               <div className="my-1">
-                {isAddToCart ? (
+                {cartProducts?.find((item) => item.id == singleProduct?.id) ? (
                   <button
-                    className="h-auto w-auto p-2  bg-orange-600  text-white rounded-sm"
-                    onClick={handleRemoveFromCart}
+                    className="h-auto w-auto p-2  bg-orange-600  text-white rounded-md"
+                    onClick={() => handleRemoveFromCart(singleProduct)}
                   >
                     Remove from cart
                   </button>
                 ) : (
                   <button
-                    className="h-auto w-auto p-2   bg-blue-600 text-white rounded-sm"
-                    onClick={handleAddToCart}
+                    className="h-auto w-auto p-2   bg-blue-600 text-white rounded-md"
+                    onClick={() => handleAddToCart(singleProduct)}
                   >
                     Add to cart
                   </button>
