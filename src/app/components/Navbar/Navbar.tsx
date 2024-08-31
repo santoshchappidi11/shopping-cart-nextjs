@@ -34,7 +34,7 @@ const Navbar = () => {
           />
         </div>
       </div>
-      <Link href={"./CartPage"}>
+      <Link href={"/CartPage"}>
         <div className="w-auto flex justify-center items-center">
           <FontAwesomeIcon
             icon={faShoppingBag}

@@ -3,15 +3,55 @@
 import { faXmark, faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import { useMyContext } from "@/app/context/ShoppingCartContext";
 import CartQuantity from "./CartQuantity";
 
 const Cart = () => {
-  const { cartProducts } = useMyContext();
+  const { cartProducts, dispatch } = useMyContext();
 
   const [total, setTotal] = useState<number>();
+  const [discountedTotal, setDiscountedTotal] = useState<number>();
+  const [actualDiscount, setActualDiscount] = useState<number>();
+
+  const currencyOptions: Intl.NumberFormatOptions = {
+    style: "currency",
+    currency: "INR",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  };
+
+  //   CALCULATE TOTAL PRICE
+  useEffect(() => {
+    if (cartProducts) {
+      const allPrices = cartProducts.reduce<number>(
+        (acc, item) => acc + parseFloat(item.price),
+        0
+      );
+      setTotal(allPrices);
+
+      // Calculate 20% off
+      const discount = 0.2;
+      const finalPrice = allPrices - allPrices * discount;
+      setDiscountedTotal(finalPrice);
+      setActualDiscount(total && total - finalPrice);
+    }
+  }, [cartProducts, total]);
+
+  //REMOVE PRODUCT FROM CART
+  const handleRemoveFromCart = (product: any) => {
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: product,
+    });
+  };
+
+  const handleCheckoutCart = () => {
+    dispatch({
+      type: "CLEAR_CART",
+    });
+  };
 
   return (
     <>
@@ -44,13 +84,14 @@ const Cart = () => {
                 </div>
                 <CartQuantity />
                 <div>
-                  <span>₹ {item.price}</span>
+                  <span>₹ {item?.price}</span>
                 </div>
                 <div>
                   <FontAwesomeIcon
                     icon={faXmark}
                     size="xl"
                     className="cursor-pointer"
+                    onClick={() => handleRemoveFromCart(item)}
                   />
                 </div>
               </div>
@@ -69,27 +110,42 @@ const Cart = () => {
           </div>
           <div className="pt-5 pb-5">
             <div className=" flex justify-between items-center px-5 pb-5">
-              <p>ITEMS</p>
+              <p>{cartProducts?.length > 1 ? "ITEMS" : "ITEM"}</p>
               <span>{cartProducts?.length}</span>
             </div>
             <div className=" flex justify-between items-center px-5  pb-5">
               <p>TOTAL</p>
               <span>
-                {cartProducts?.reduce((acc, item) => (acc += item.price), 0)}
+                {" "}
+                {total
+                  ?.toLocaleString("en-IN", currencyOptions)
+                  .replace("₹", "₹ ")}
               </span>
             </div>
             <div className=" flex justify-between items-center px-5  pb-5">
               <p>DISCOUNT (20% off)</p>
-              <span>{800}</span>
+              <span>
+                {actualDiscount
+                  ?.toLocaleString("en-IN", currencyOptions)
+                  .replace("₹", "₹ ")}
+              </span>
             </div>
           </div>
           <div className="border-t border-t-gray-300 pt-5">
             <div className="flex justify-between items-center px-5 ">
               <h2>TOTAL PRICE</h2>
-              <span>{800}</span>
+              <span>
+                {" "}
+                {discountedTotal
+                  ?.toLocaleString("en-IN", currencyOptions)
+                  .replace("₹", "₹ ")}
+              </span>
             </div>
             <div className="w-full h-auto flex justify-center items-center">
-              <button className="rounded-sm w-11/12 py-2 my-10 cursor-pointer bg-black text-white">
+              <button
+                className="rounded-sm w-11/12 py-2 my-10 cursor-pointer bg-black text-white"
+                onClick={() => handleCheckoutCart()}
+              >
                 CHECKOUT
               </button>
             </div>
