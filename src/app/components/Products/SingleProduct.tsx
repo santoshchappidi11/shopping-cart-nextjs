@@ -62,22 +62,29 @@ const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
   return (
     <div
       key={item.id}
-      className="border border-gray-100 h-auto w-3/12 mx-8 mb-5 px-3 pt-3 pb-1 rounded-md bg-gray-100"
+      className="h-auto w-80 mx-8 mb-5 pb-1 rounded-md transition-all "
     >
-      <div className="h-80 w-full">
-        <Image
-          src={item.image}
-          alt="product"
-          className="h-full w-full object-contain rounded-xl"
-        />
-      </div>
-      <div className="px-2 py-2">
-        <h1 className="text-xl font-medium my-2">{item.name}</h1>
+      <Link
+        href={`/ProductDetails/${item?.id}`}
+        className="block bg-white"
+        aria-label={`View details of ${item.name}`}
+      >
+        <div className="h-80 w-full bg-white">
+          <Image
+            src={item.image}
+            alt="product"
+            className="h-full w-full object-contain"
+          />
+        </div>
+      </Link>
+      <div className="px-3 py-2 mx-3 mt-5 bg-gradient-to-r from-white to-gray-100 rounded-md">
+        <h1 className="text-xl font-medium my-2 leading-tight">{item.name}</h1>
         <p className="mb-1">
           <FontAwesomeIcon icon={faCartShopping} size="sm" />{" "}
           <span className="text-base">₹{item.price}</span>
         </p>
         <Rating rating={item.rating} numReviews={item.numReviews} />
+
         <div className="">
           <span
             className={
@@ -88,7 +95,7 @@ const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
           >
             {item.inStock ? "In Stock" : "Out of stock"}
           </span>
-          <p className="text-sm ">
+          <p className="text-sm my-1">
             {item.delivery ? (
               <FontAwesomeIcon icon={faTruckFast} size="sm" />
             ) : (
@@ -97,25 +104,24 @@ const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
             {item.delivery ? "Fast delivery" : "delivery in 4 days"}{" "}
           </p>
         </div>
-        <div className=" h-16 w-full flex justify-between items-center mt-1 mb-0">
-          <Link
-            href={`/ProductDetails/${item?.id}`}
-            className="px-5 py-2 border border-gray-300 cursor-pointer rounded-md bg-gray-200"
-          >
-            View
-          </Link>
-
+        <div className="h-auto w-full flex justify-between items-center flex-col mt-3 mb-2">
           {cartProducts?.find((product) => product.id == item.id) ? (
             <button
-              className="px-4 py-2 cursor-pointer rounded-md  bg-red-600 text-white"
-              onClick={() => handleRemoveFromCart(item)}
+              className="w-full px-4 py-2 cursor-pointer rounded-md  bg-red-600 text-white hover:bg-red-500"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleRemoveFromCart(item);
+              }}
             >
               Remove from <FontAwesomeIcon icon={faShoppingBag} />
             </button>
           ) : (
             <button
-              className="px-8 py-2 cursor-pointer rounded-md  bg-black text-white"
-              onClick={() => handleAddToCart(item)}
+              className="w-full px-8 py-2 cursor-pointer rounded-md  bg-black text-white hover:bg-slate-800"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleAddToCart(item);
+              }}
             >
               Add to <FontAwesomeIcon icon={faShoppingBag} />
             </button>

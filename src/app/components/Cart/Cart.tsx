@@ -97,7 +97,7 @@ const Cart = () => {
           {cartProducts?.length ? (
             cartProducts?.map((item) => (
               <div
-                className="h-32 w-full flex justify-between items-center my-5 border-b border-gray-300 border-t border-t-gray-300 py-2"
+                className="h-32 w-full flex justify-between items-center my-2 py-2 px-5 bg-gradient-to-r from-white to-gray-100 rounded-md"
                 key={item.id}
               >
                 <div className="h-full w-1/5 ">
@@ -120,7 +120,7 @@ const Cart = () => {
                 <div>
                   <FontAwesomeIcon
                     icon={faXmark}
-                    size="xl"
+                    size="lg"
                     className="cursor-pointer"
                     onClick={() => handleRemoveFromCart(item)}
                   />

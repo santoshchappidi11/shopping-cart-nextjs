@@ -1,4 +1,6 @@
 import { useMyContext } from "@/app/context/ShoppingCartContext";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -40,13 +42,25 @@ const CartQuantity: React.FC<quantityProps> = ({
   }, [item]);
 
   return (
-    <div className="w-3/12 flex justify-center items-center">
-      <button onClick={() => decrementCount(item)}>-</button>
-      <p className="w-5 flex justify-center items-center px-1 mx-1 rounded-sm border border-gray-300">
+    <div className="w-1/5 flex justify-center items-center">
+      {/* <button onClick={() => decrementCount(item)}>-</button> */}
+      <FontAwesomeIcon
+        icon={faMinus}
+        size="sm"
+        onClick={() => decrementCount(item)}
+        className="cursor-pointer"
+      />
+      <p className="w-5 flex justify-center items-center px-1 mx-1 rounded-sm border border-gray-300 bg-white">
         {" "}
         {item?.qty}{" "}
       </p>
-      <button onClick={() => IncrementCount(item)}>+</button>
+      <FontAwesomeIcon
+        icon={faPlus}
+        size="sm"
+        onClick={() => IncrementCount(item)}
+        className="cursor-pointer"
+      />
+      {/* <button onClick={() => IncrementCount(item)}>+</button> */}
     </div>
   );
 };
