@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import { createContext, ReactNode, useContext, useReducer } from "react";
 import shoppingData from "../store/data";
 import { StaticImageData } from "next/image";
@@ -33,6 +33,9 @@ interface myContextData {
   searchQuery: string;
   dispatch: Dispatch<any>;
   filterDispatch: Dispatch<any>;
+  // totalPrice: number;
+  // totalDiscount: number;
+  // actualDiscountTotal: number;
 }
 
 const shoppingContext = createContext<myContextData | undefined>(undefined);
@@ -76,8 +79,8 @@ const reducer = (state: any, action: any) => {
     case "INCREMENT_QTY": {
       return {
         ...state,
-        cart: state.cart.filter((item: any) =>
-          item.id === action.payload.id ? item.qty++ : item.qty
+        cart: state.cart.map((item: any) =>
+          item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item
         ),
       };
     }
@@ -85,13 +88,13 @@ const reducer = (state: any, action: any) => {
     case "DECREMENT_QTY": {
       return {
         ...state,
-        cart: state.cart.filter((item: any) =>
-          item.id === action.payload.id
-            ? item.qty === 1
-              ? item.id !== action.payload.id
-              : item.qty--
-            : item.qty
-        ),
+        cart: state.cart
+          .map((item: any) =>
+            item.id === action.payload.id
+              ? { ...item, qty: item.qty - 1 }
+              : item
+          )
+          .filter((item: any) => item.qty > 0),
       };
     }
 
@@ -150,14 +153,28 @@ export const ShoppingProvider = ({ children }: { children: ReactNode }) => {
     filterReducer,
     filterInitialState
   );
+  // const [total, setTotal] = useState<number>(0);
+  // const [discountedTotal, setDiscountedTotal] = useState<number>(0);
+  // const [actualDiscount, setActualDiscount] = useState<number>(0);
 
-  //   const contextValue: myContextData = {
-  //     products: state.products,
-  //     sortByPrice: filterState.sortByPrice,
-  //     inStock: filterState.inStock,
-  //     delivery: filterState.delivery,
-  //     searchQuery: filterState.searchQuery,
-  //   };
+  // // CALCULATE TOTAL PRICE
+
+  // useEffect(() => {
+  //   const allProductsTotalPrice = state?.products?.reduce(
+  //     (acc: any, item: product) => {
+  //       return acc + parseInt(item?.price) * item?.qty;
+  //     },
+  //     0
+  //   );
+
+  //   setTotal(allProductsTotalPrice);
+
+  //   // Calculate 20% off
+  //   const discount = 0.2;
+  //   const finalPrice = allProductsTotalPrice - allProductsTotalPrice * discount;
+  //   setDiscountedTotal(finalPrice);
+  //   setActualDiscount(total && total - finalPrice);
+  // }, [state, total]);
 
   return (
     <shoppingContext.Provider
@@ -171,6 +188,9 @@ export const ShoppingProvider = ({ children }: { children: ReactNode }) => {
         searchQuery: filterState.searchQuery,
         dispatch: dispatch,
         filterDispatch: filterDispatch,
+        // totalPrice: total,
+        // totalDiscount: discountedTotal,
+        // actualDiscountTotal: actualDiscount,
       }}
     >
       {children}

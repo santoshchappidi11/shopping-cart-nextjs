@@ -16,6 +16,7 @@ const Cart = () => {
   const [total, setTotal] = useState<number>();
   const [discountedTotal, setDiscountedTotal] = useState<number>();
   const [actualDiscount, setActualDiscount] = useState<number>();
+  const [totalItems, setTotalItems] = useState<number>();
 
   const currencyOptions: Intl.NumberFormatOptions = {
     style: "currency",
@@ -28,7 +29,7 @@ const Cart = () => {
   useEffect(() => {
     if (cartProducts) {
       const allPrices = cartProducts.reduce<number>(
-        (acc, item) => acc + parseFloat(item.price),
+        (acc, item) => acc + parseFloat(item.price) * item.qty,
         0
       );
       setTotal(allPrices);
@@ -40,6 +41,15 @@ const Cart = () => {
       setActualDiscount(total && total - finalPrice);
     }
   }, [cartProducts, total]);
+
+  useEffect(() => {
+    const allItems = cartProducts.reduce<number>(
+      (acc, item) => acc + item.qty,
+      0
+    );
+
+    setTotalItems(allItems);
+  }, [cartProducts]);
 
   // REMOVE PRODUCT FROM CART
   const handleRemoveFromCart = (product: any) => {
@@ -65,7 +75,7 @@ const Cart = () => {
           <div className="flex justify-between items-center pb-10">
             <h2 className="font-semibold text-2xl">Cart Items</h2>
             <span className="text-gray-600 font-semibold text-lg">
-              {cartProducts?.length} Items
+              {totalItems} Items
             </span>
           </div>
 
@@ -117,7 +127,7 @@ const Cart = () => {
           <div className="pt-5 pb-5">
             <div className=" flex justify-between items-center px-5 pb-5">
               <p>{cartProducts?.length > 1 ? "ITEMS" : "ITEM"}</p>
-              <span>{cartProducts?.length}</span>
+              <span>{totalItems}</span>
             </div>
             <div className=" flex justify-between items-center px-5  pb-5">
               <p>TOTAL</p>
