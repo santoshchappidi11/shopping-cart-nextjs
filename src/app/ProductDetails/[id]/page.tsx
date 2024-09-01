@@ -3,12 +3,17 @@
 import Navbar from "@/app/components/Navbar/Navbar";
 import Rating from "@/app/components/Rating/Rating";
 import { useMyContext } from "@/app/context/ShoppingCartContext";
-import { faTruck, faTruckFast } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShoppingBag,
+  faTruck,
+  faTruckFast,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image, { StaticImageData } from "next/image";
 import { useParams } from "next/navigation";
 // import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const SingleProductDetails = () => {
   const { cartProducts, dispatch } = useMyContext();
@@ -71,6 +76,8 @@ const SingleProductDetails = () => {
       type: "ADD_TO_CART",
       payload: product,
     });
+
+    toast.success("Item added to cart!");
   };
 
   const handleRemoveFromCart = (product: any) => {
@@ -79,6 +86,8 @@ const SingleProductDetails = () => {
       type: "REMOVE_FROM_CART",
       payload: product,
     });
+
+    toast.success("Item removed from cart!");
   };
 
   return (
@@ -153,17 +162,19 @@ const SingleProductDetails = () => {
               <div className="my-1">
                 {cartProducts?.find((item) => item.id == singleProduct?.id) ? (
                   <button
-                    className="h-auto w-auto p-2  bg-orange-600  text-white rounded-md"
+                    className="h-auto w-auto px-4 py-2 bg-red-600 text-white rounded-md"
                     onClick={() => handleRemoveFromCart(singleProduct)}
                   >
-                    Remove from cart
+                    Remove from{" "}
+                    <FontAwesomeIcon icon={faShoppingBag} className="ml-1" />
                   </button>
                 ) : (
                   <button
-                    className="h-auto w-auto p-2   bg-blue-600 text-white rounded-md"
+                    className="h-auto w-auto px-4 py-2 bg-black text-white rounded-md"
                     onClick={() => handleAddToCart(singleProduct)}
                   >
-                    Add to cart
+                    Add to{" "}
+                    <FontAwesomeIcon icon={faShoppingBag} className="ml-1" />
                   </button>
                 )}
               </div>

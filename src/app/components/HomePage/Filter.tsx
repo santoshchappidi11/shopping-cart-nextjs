@@ -22,7 +22,7 @@ const Filter = () => {
           <label className="mb-4 mt-2 text-sm cursor-pointer">
             <input
               type="radio"
-              name="sorting"
+              name="connectivity"
               className=""
               onChange={() => {
                 filterDispatch({
@@ -37,7 +37,7 @@ const Filter = () => {
           <label className="mb-4 text-sm cursor-pointer">
             <input
               type="radio"
-              name="sorting"
+              name="connectivity"
               onChange={() => {
                 filterDispatch({
                   type: "FILTER_BY_WIRE",

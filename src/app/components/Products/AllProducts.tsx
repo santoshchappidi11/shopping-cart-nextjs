@@ -1,14 +1,19 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import shoppingData from "@/app/store/data";
-import { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/image";
 import SingleProduct from "./SingleProduct";
 import { useMyContext } from "@/app/context/ShoppingCartContext";
+import emptyCartImage from "./../../../Images/empty-cart.png";
 
 const AllProducts = () => {
-  const { products, sortByPrice, inStock, delivery, searchQuery } =
-    useMyContext();
+  const {
+    products,
+    sortByPrice,
+    inStock,
+    delivery,
+    searchQuery,
+    connectivity,
+  } = useMyContext();
 
   interface product {
     id: number;
@@ -27,15 +32,11 @@ const AllProducts = () => {
     formfactor: string;
     description: string;
     qty: number;
-    // viewId: string;
   }
-
-  // const [allProducts, setAllProducts] = useState<product[]>([]);
 
   useEffect(() => {
     if (shoppingData?.length) {
       localStorage.setItem("products", JSON.stringify(shoppingData));
-      // setAllProducts(shoppingData);
     }
   }, []);
 
@@ -51,6 +52,12 @@ const AllProducts = () => {
       });
     }
 
+    if (connectivity) {
+      newFilteredProducts = newFilteredProducts.filter(
+        (item) => item.connectivity === connectivity
+      );
+    }
+
     if (inStock) {
       newFilteredProducts = newFilteredProducts.filter((item) => item.inStock);
     }
@@ -61,21 +68,31 @@ const AllProducts = () => {
 
     if (searchQuery) {
       newFilteredProducts = newFilteredProducts.filter((item) =>
-        item.name.toLowerCase().includes(searchQuery)
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
     return newFilteredProducts;
   };
 
+  const filteredProducts = transformedProducts();
+
   return (
-    <div className=" h-auto w-full flex justify-between items-start flex-row flex-wrap">
-      {/* {allProducts?.map((item: product) => (
-        <SingleProduct item={item} key={item.id} />
-      ))} */}
-      {transformedProducts()?.map((item: product) => (
-        <SingleProduct item={item} key={item.id} />
-      ))}
+    <div className="h-auto w-full flex justify-between items-start flex-row flex-wrap">
+      {filteredProducts.length > 0 ? (
+        filteredProducts.map((item: product) => (
+          <SingleProduct item={item} key={item.id} />
+        ))
+      ) : (
+        <div className="h-96 w-full mt-20 flex flex-col justify-center items-center">
+          <Image
+            src={emptyCartImage}
+            alt="empty-cart"
+            className="h-full w-full object-contain"
+          />
+          <h2 className="text-xl font-medium text-gray-400">No Items!</h2>
+        </div>
+      )}
     </div>
   );
 };

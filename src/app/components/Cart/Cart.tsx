@@ -7,11 +7,14 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import { useMyContext } from "@/app/context/ShoppingCartContext";
 import CartQuantity from "./CartQuantity";
+import toast from "react-hot-toast";
+import emptyCartImage from "./../../../Images/empty-cart.png";
+import Link from "next/link";
 
 const Cart = () => {
   const { cartProducts, dispatch } = useMyContext();
 
-  console.log(cartProducts, "cart prod");
+  // console.log(cartProducts, "cart prod");
 
   const [total, setTotal] = useState<number>();
   const [discountedTotal, setDiscountedTotal] = useState<number>();
@@ -57,6 +60,8 @@ const Cart = () => {
       type: "REMOVE_FROM_CART",
       payload: product,
     });
+
+    toast.success("Item removed from cart!");
   };
 
   // CLEAR/CHECKOUT CART
@@ -64,6 +69,12 @@ const Cart = () => {
     dispatch({
       type: "CLEAR_CART",
     });
+
+    if (cartProducts?.length > 0) {
+      toast.success("Thank you for shopping!");
+    } else {
+      toast.error("Add items to cart to checkout!");
+    }
   };
 
   return (
@@ -73,10 +84,14 @@ const Cart = () => {
       <div className="h-auto w-full flex justify-center items-start mt-24 relative px-16">
         <div className="h-full w-3/4 py-5 pr-10">
           <div className="flex justify-between items-center pb-10">
-            <h2 className="font-semibold text-2xl">Cart Items</h2>
-            <span className="text-gray-600 font-semibold text-lg">
-              {totalItems} Items
-            </span>
+            {cartProducts?.length > 0 && (
+              <>
+                <h2 className="font-semibold text-2xl">Cart Items</h2>
+                <span className="text-gray-600 font-semibold text-lg">
+                  {totalItems} Items
+                </span>
+              </>
+            )}
           </div>
 
           {cartProducts?.length ? (
@@ -113,8 +128,23 @@ const Cart = () => {
               </div>
             ))
           ) : (
-            <div>
-              <h2>No Products!</h2>
+            <div className="h-96 w-full">
+              <Image
+                src={emptyCartImage}
+                alt="empty-cart"
+                className="h-full w-full object-contain"
+              />
+              <div className=" flex justify-center items-center ">
+                <h2 className="text-xl font-medium text-gray-400">EMPTY!</h2>
+              </div>
+              <div className=" flex justify-center items-center mt-10">
+                <Link href={"/"}>
+                  {" "}
+                  <h1 className="text-2xl font-bold cursor-pointer">
+                    SHOP<span className="text-red-600">p</span> now!
+                  </h1>
+                </Link>
+              </div>
             </div>
           )}
         </div>

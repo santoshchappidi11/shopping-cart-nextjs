@@ -1,5 +1,6 @@
 import { useMyContext } from "@/app/context/ShoppingCartContext";
 import React, { useCallback, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 interface quantityProps {
   // handleRemoveFromCart: (id: number) => void;
@@ -17,7 +18,7 @@ const CartQuantity: React.FC<quantityProps> = ({
   const [count, setCount] = useState<number>(0);
 
   const IncrementCount = (item: any) => {
-    console.log(item, "id here");
+    // console.log(item, "id here");
 
     dispatch({
       type: "INCREMENT_QTY",
@@ -26,7 +27,7 @@ const CartQuantity: React.FC<quantityProps> = ({
   };
 
   const decrementCount = (item: any) => {
-    console.log(item, "id here");
+    // console.log(item, "id here");
 
     dispatch({
       type: "DECREMENT_QTY",

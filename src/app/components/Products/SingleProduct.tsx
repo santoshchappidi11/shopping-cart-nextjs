@@ -13,6 +13,7 @@ import Link from "next/link";
 import React from "react";
 import Rating from "../Rating/Rating";
 import { useMyContext } from "@/app/context/ShoppingCartContext";
+import toast from "react-hot-toast";
 
 interface product {
   id: number;
@@ -45,6 +46,8 @@ const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
       type: "ADD_TO_CART",
       payload: item,
     });
+
+    toast.success("Item added to cart!");
   };
 
   const handleRemoveFromCart = (item: any) => {
@@ -52,12 +55,14 @@ const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
       type: "REMOVE_FROM_CART",
       payload: item,
     });
+
+    toast.success("Item removed from cart!");
   };
 
   return (
     <div
       key={item.id}
-      className="border border-gray-100 h-auto w-3/12 mx-8 mb-5 px-3 py-3 rounded-md bg-gray-100"
+      className="border border-gray-100 h-auto w-3/12 mx-8 mb-5 px-3 pt-3 pb-1 rounded-md bg-gray-100"
     >
       <div className="h-80 w-full">
         <Image
@@ -92,23 +97,24 @@ const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
             {item.delivery ? "Fast delivery" : "delivery in 4 days"}{" "}
           </p>
         </div>
-        <div className=" h-auto w-full">
-          <Link href={`/ProductDetails/${item?.id}`}>
-            <button className="px-8 py-2 border border-gray-400 mr-2 cursor-pointer rounded-md bg-gray-100">
-              View
-            </button>
+        <div className=" h-16 w-full flex justify-between items-center mt-1 mb-0">
+          <Link
+            href={`/ProductDetails/${item?.id}`}
+            className="px-5 py-2 border border-gray-300 cursor-pointer rounded-md bg-gray-200"
+          >
+            View
           </Link>
 
           {cartProducts?.find((product) => product.id == item.id) ? (
             <button
-              className="px-2 py-2 cursor-pointer rounded-md mt-4 bg-red-600 text-white"
+              className="px-4 py-2 cursor-pointer rounded-md  bg-red-600 text-white"
               onClick={() => handleRemoveFromCart(item)}
             >
               Remove from <FontAwesomeIcon icon={faShoppingBag} />
             </button>
           ) : (
             <button
-              className="px-8 py-2 cursor-pointer rounded-md mt-4 bg-red-600 text-white"
+              className="px-8 py-2 cursor-pointer rounded-md  bg-black text-white"
               onClick={() => handleAddToCart(item)}
             >
               Add to <FontAwesomeIcon icon={faShoppingBag} />

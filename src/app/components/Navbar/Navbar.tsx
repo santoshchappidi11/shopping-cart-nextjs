@@ -8,7 +8,15 @@ import Link from "next/link";
 import React from "react";
 
 const Navbar = () => {
-  const { cartProducts } = useMyContext();
+  const { cartProducts, filterDispatch } = useMyContext();
+
+  const handleSearchQuery = (e: any) => {
+    // console.log(e.target.value);
+    filterDispatch({
+      type: "FILTER_BY_SEARCH",
+      payload: e.target.value,
+    });
+  };
 
   return (
     <div className="h-auto w-full border border-gray-200 flex justify-between items-center px-20 fixed top-0 bg-white z-20">
@@ -26,6 +34,7 @@ const Navbar = () => {
             type="text"
             placeholder="search something..."
             className="w-11/12 h-10 outline-none"
+            onChange={handleSearchQuery}
           />
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
