@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import {
   faCartShopping,
@@ -7,7 +7,6 @@ import {
   faTruckFast,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { useRouter } from "next/router";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -15,7 +14,7 @@ import Rating from "../Rating/Rating";
 import { useMyContext } from "@/app/context/ShoppingCartContext";
 import toast from "react-hot-toast";
 
-interface product {
+interface Product {
   id: number;
   name: string;
   fullName: string;
@@ -33,81 +32,78 @@ interface product {
   description: string;
 }
 
-interface singleProductProps {
-  item: product;
+interface SingleProductProps {
+  item: Product;
 }
 
-const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
+const SingleProduct: React.FC<SingleProductProps> = ({ item }) => {
   const { cartProducts, dispatch } = useMyContext();
-  // const router = useRouter();
 
-  const handleAddToCart = (item: any) => {
+  const handleAddToCart = (item: Product) => {
     dispatch({
       type: "ADD_TO_CART",
       payload: item,
     });
-
     toast.success("Item added to cart!");
   };
 
-  const handleRemoveFromCart = (item: any) => {
+  const handleRemoveFromCart = (item: Product) => {
     dispatch({
       type: "REMOVE_FROM_CART",
       payload: item,
     });
-
     toast.success("Item removed from cart!");
   };
 
   return (
-    <div
-      key={item.id}
-      className="h-auto w-80 mx-8 mb-5 pb-1 rounded-md transition-all "
-    >
+    <div className="h-auto w-80 mx-8 mb-5 pb-0  rounded-md transition-all bg-white">
       <Link
-        href={`/ProductDetails/${item?.id}`}
-        className="block bg-white"
+        href={`/ProductDetails/${item.id}`}
+        className="block"
         aria-label={`View details of ${item.name}`}
       >
-        <div className="h-80 w-full bg-white">
+        <div className="h-80 w-full">
           <Image
             src={item.image}
-            alt="product"
-            className="h-full w-full object-contain"
+            alt={item.name}
+            className="h-full w-full object-contain rounded-md"
           />
         </div>
       </Link>
-      <div className="px-3 py-2 mx-3 mt-5 bg-gradient-to-r from-white to-gray-100 rounded-md">
-        <h1 className="text-xl font-medium my-2 leading-tight">{item.name}</h1>
-        <p className="mb-1">
-          <FontAwesomeIcon icon={faCartShopping} size="sm" />{" "}
-          <span className="text-base">₹{item.price}</span>
-        </p>
-        <Rating rating={item.rating} numReviews={item.numReviews} />
-
-        <div className="">
-          <span
-            className={
-              item.inStock
-                ? "bg-green-500 text-white px-2 rounded-md text-sm"
-                : "text-white bg-gray-400 px-2 rounded-md text-sm"
-            }
-          >
-            {item.inStock ? "In Stock" : "Out of stock"}
-          </span>
-          <p className="text-sm my-1">
-            {item.delivery ? (
-              <FontAwesomeIcon icon={faTruckFast} size="sm" />
-            ) : (
-              <FontAwesomeIcon icon={faTruck} size="sm" />
-            )}{" "}
-            {item.delivery ? "Fast delivery" : "delivery in 4 days"}{" "}
+      <div className="pt-3 px-0 pb-0 mx-3 mt-5 bg-gradient-to-r from-white to-gray-100 rounded-md">
+        <div className="px-3">
+          {" "}
+          <h1 className="text-xl font-medium my-2 leading-tight">
+            {item.name}
+          </h1>
+          <p className="mb-1">
+            <FontAwesomeIcon icon={faCartShopping} className="mr-1 text-sm" />
+            <span className="text-base">₹{item.price}</span>
           </p>
+          <Rating rating={item.rating} numReviews={item.numReviews} />
+          <div className="mt-2">
+            <span
+              className={`px-2 rounded-md text-sm ${
+                item.inStock
+                  ? "bg-green-500 text-white"
+                  : "bg-gray-400 text-white"
+              }`}
+            >
+              {item.inStock ? "In Stock" : "Out of stock"}
+            </span>
+            <p className="text-sm mt-1">
+              <FontAwesomeIcon
+                icon={item.delivery ? faTruckFast : faTruck}
+                className="mr-1 text-sm"
+              />
+              {item.delivery ? "Fast delivery" : "Delivery in 4 days"}
+            </p>
+          </div>
         </div>
-        <div className="h-auto w-full flex justify-between items-center flex-col mt-3 mb-2">
-          {cartProducts?.find((product) => product.id == item.id) ? (
+        <div className="h-auto w-full flex justify-between items-center flex-col mt-3 mb-0">
+          {cartProducts?.find((product) => product.id === item.id) ? (
             <button
-              className="w-full px-4 py-2 cursor-pointer rounded-md  bg-red-600 text-white hover:bg-red-500"
+              className="w-full px-4 py-2 cursor-pointer rounded-bl-md rounded-br-md bg-red-600 text-white hover:bg-red-500"
               onClick={(e) => {
                 e.stopPropagation();
                 handleRemoveFromCart(item);
@@ -117,7 +113,7 @@ const SingleProduct: React.FC<singleProductProps> = ({ item }) => {
             </button>
           ) : (
             <button
-              className="w-full px-8 py-2 cursor-pointer rounded-md  bg-black text-white hover:bg-slate-800"
+              className="w-full px-8 py-2 cursor-pointer rounded-bl-md rounded-br-md bg-black text-white hover:bg-slate-800"
               onClick={(e) => {
                 e.stopPropagation();
                 handleAddToCart(item);

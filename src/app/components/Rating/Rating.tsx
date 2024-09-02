@@ -1,9 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faStar,
-  faStarHalfAlt,
-  faStar as farStar,
-} from "@fortawesome/free-solid-svg-icons";
+import { faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
+import { faStar as farStar } from "@fortawesome/free-regular-svg-icons"; // Import the outline star
 import { v4 as uuidv4 } from "uuid";
 
 interface RatingProps {
@@ -18,10 +15,10 @@ const Rating: React.FC<RatingProps> = ({ rating, numReviews }) => {
         <FontAwesomeIcon
           key={uuidv4()}
           icon={
-            rating + 1 === rate + 0.5
-              ? faStarHalfAlt
-              : rating >= rate
+            rating >= rate
               ? faStar
+              : rating >= rate - 0.5
+              ? faStarHalfAlt
               : farStar
           }
           className="text-red-600"
