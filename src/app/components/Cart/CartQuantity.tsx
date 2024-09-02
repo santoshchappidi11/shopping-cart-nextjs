@@ -50,7 +50,7 @@ const CartQuantity: React.FC<quantityProps> = ({
         onClick={() => decrementCount(item)}
         className="cursor-pointer"
       />
-      <p className="w-5 flex justify-center items-center px-1 mx-1 rounded-sm border border-gray-300 bg-white">
+      <p className="w-6 flex justify-center items-center px-1 mx-1 rounded-sm border border-gray-300 bg-white text-red-600 text-lg">
         {" "}
         {item?.qty}{" "}
       </p>

@@ -213,7 +213,7 @@ const SingleProductDetails = () => {
 
             <div className="pt-5 pb-2">
               <h4 className="text-xl font-bold">Product Description</h4>
-              <span className="text-base font-light">
+              <span className="text-sm font-light">
                 {singleProduct?.description}
               </span>
             </div>

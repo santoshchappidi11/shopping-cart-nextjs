@@ -23,7 +23,7 @@ const Filter = () => {
             <input
               type="radio"
               name="connectivity"
-              className=""
+              className="accent-red-500"
               onChange={() => {
                 filterDispatch({
                   type: "FILTER_BY_WIRE",
@@ -38,6 +38,7 @@ const Filter = () => {
             <input
               type="radio"
               name="connectivity"
+              className="accent-red-500"
               onChange={() => {
                 filterDispatch({
                   type: "FILTER_BY_WIRE",
@@ -55,7 +56,7 @@ const Filter = () => {
             <input
               type="radio"
               name="sorting"
-              className=""
+              className="accent-red-500"
               onChange={() => {
                 filterDispatch({
                   type: "FILTER_BY_PRICE",
@@ -70,6 +71,7 @@ const Filter = () => {
             <input
               type="radio"
               name="sorting"
+              className="accent-red-500"
               onChange={() => {
                 filterDispatch({
                   type: "FILTER_BY_PRICE",
@@ -87,6 +89,7 @@ const Filter = () => {
             <input
               type="checkbox"
               name="in stock only"
+              className="accent-red-500"
               onChange={() => {
                 filterDispatch({
                   type: "FILTER_BY_STOCK",
@@ -103,6 +106,7 @@ const Filter = () => {
             <input
               type="checkbox"
               name="fast delivery"
+              className="accent-red-500"
               onChange={() => {
                 filterDispatch({
                   type: "FILTER_BY_DELIVERY",
@@ -114,7 +118,7 @@ const Filter = () => {
           </label>
         </div>
         <button
-          className="px-6 py-1 border border-gray-400 rounded-md mt-2 cursor-pointer "
+          className="px-6 py-1 rounded-md mt-2 cursor-pointer bg-black text-white hover:bg-gray-900"
           onClick={() => {
             filterDispatch({
               type: "CLEAR_ALL_FILTERS",

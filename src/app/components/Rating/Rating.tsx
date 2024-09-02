@@ -24,7 +24,7 @@ const Rating: React.FC<RatingProps> = ({ rating, numReviews }) => {
               ? faStar
               : farStar
           }
-          style={{ color: "#17706e" }}
+          className="text-red-600"
         />
       ))}
       <span>({numReviews})</span>

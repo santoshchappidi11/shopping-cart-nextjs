@@ -141,7 +141,7 @@ const Cart = () => {
                 <Link href={"/"}>
                   {" "}
                   <h1 className="text-2xl font-bold cursor-pointer">
-                    SHOP<span className="text-red-600">p</span> now!
+                    SHOP<span className="text-red-600 font-medium">p</span> now!
                   </h1>
                 </Link>
               </div>
@@ -157,11 +157,11 @@ const Cart = () => {
           <div className="pt-5 pb-5">
             <div className=" flex justify-between items-center px-5 pb-5">
               <p>{cartProducts?.length > 1 ? "ITEMS" : "ITEM"}</p>
-              <span>{totalItems}</span>
+              <span className="text-red-600 font-medium">{totalItems}</span>
             </div>
             <div className=" flex justify-between items-center px-5  pb-5">
               <p>TOTAL</p>
-              <span>
+              <span className="text-red-600 font-medium">
                 {" "}
                 {total
                   ?.toLocaleString("en-IN", currencyOptions)
@@ -170,7 +170,7 @@ const Cart = () => {
             </div>
             <div className=" flex justify-between items-center px-5  pb-5">
               <p>DISCOUNT (20% off)</p>
-              <span>
+              <span className="text-red-600 font-medium">
                 {actualDiscount
                   ?.toLocaleString("en-IN", currencyOptions)
                   .replace("₹", "₹ ")}
@@ -180,7 +180,7 @@ const Cart = () => {
           <div className="border-t border-t-gray-300 pt-5">
             <div className="flex justify-between items-center px-5 ">
               <h2>TOTAL PRICE</h2>
-              <span>
+              <span className="text-red-600 font-medium">
                 {" "}
                 {discountedTotal
                   ?.toLocaleString("en-IN", currencyOptions)
@@ -189,7 +189,7 @@ const Cart = () => {
             </div>
             <div className="w-full h-auto flex justify-center items-center">
               <button
-                className="rounded-sm w-11/12 py-2 my-10 cursor-pointer bg-black text-white"
+                className="rounded-md w-11/12 py-2 my-10 cursor-pointer bg-black text-white hover:bg-gray-800"
                 onClick={() => handleCheckoutCart()}
               >
                 CHECKOUT
