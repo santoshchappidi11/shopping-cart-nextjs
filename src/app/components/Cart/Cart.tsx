@@ -141,7 +141,7 @@ const Cart = () => {
                 <Link href={"/"}>
                   {" "}
                   <h1 className="text-2xl font-bold cursor-pointer">
-                    SHOP<span className="text-red-600 font-medium">p</span> now!
+                    SHOP<span className="text-red-600 font-bold">p</span> now!
                   </h1>
                 </Link>
               </div>
