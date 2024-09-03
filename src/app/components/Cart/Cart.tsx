@@ -20,6 +20,7 @@ const Cart = () => {
   const [discountedTotal, setDiscountedTotal] = useState<number>();
   const [actualDiscount, setActualDiscount] = useState<number>();
   const [totalItems, setTotalItems] = useState<number>();
+  const [deliveryCharges, setDeliveryCharges] = useState<number>(50);
 
   const currencyOptions: Intl.NumberFormatOptions = {
     style: "currency",
@@ -43,7 +44,7 @@ const Cart = () => {
       setDiscountedTotal(finalPrice);
       setActualDiscount(total && total - finalPrice);
     }
-  }, [cartProducts, total]);
+  }, [cartProducts, total, deliveryCharges]);
 
   useEffect(() => {
     const allItems = cartProducts.reduce<number>(
@@ -172,6 +173,14 @@ const Cart = () => {
               <p>DISCOUNT (20% off)</p>
               <span className="text-red-600 font-medium">
                 {actualDiscount
+                  ?.toLocaleString("en-IN", currencyOptions)
+                  .replace("₹", "₹ ")}
+              </span>
+            </div>
+            <div className=" flex justify-between items-center px-5  pb-5">
+              <p className="text-wrap w-auto">DELIVERY CHARGES</p>
+              <span className="text-red-600 font-medium">
+                {deliveryCharges
                   ?.toLocaleString("en-IN", currencyOptions)
                   .replace("₹", "₹ ")}
               </span>
