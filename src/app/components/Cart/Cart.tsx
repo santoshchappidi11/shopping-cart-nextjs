@@ -41,7 +41,9 @@ const Cart = () => {
       // Calculate 20% off
       const discount = 0.2;
       const finalPrice = allPrices - allPrices * discount;
-      setDiscountedTotal(finalPrice);
+      setDiscountedTotal(
+        finalPrice > 0 ? finalPrice + deliveryCharges : finalPrice
+      );
       setActualDiscount(total && total - finalPrice);
     }
   }, [cartProducts, total, deliveryCharges]);
