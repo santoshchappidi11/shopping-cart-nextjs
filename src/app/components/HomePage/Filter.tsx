@@ -12,8 +12,6 @@ const Filter = () => {
     connectivity,
   } = useMyContext();
 
-  // console.log(products);
-
   return (
     <div className="rounded-sm h-auto w-1/6 pt-5 py-10 sticky top-24">
       <div className="h-full w-full flex justify-between items-start flex-col pl-10 py-5">

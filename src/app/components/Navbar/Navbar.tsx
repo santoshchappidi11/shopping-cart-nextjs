@@ -11,7 +11,6 @@ const Navbar = () => {
   const { cartProducts, filterDispatch } = useMyContext();
 
   const handleSearchQuery = (e: any) => {
-    // console.log(e.target.value);
     filterDispatch({
       type: "FILTER_BY_SEARCH",
       payload: e.target.value,

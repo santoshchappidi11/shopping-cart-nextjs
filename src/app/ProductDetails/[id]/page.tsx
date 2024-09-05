@@ -11,7 +11,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image, { StaticImageData } from "next/image";
 import { useParams } from "next/navigation";
-// import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -58,7 +57,7 @@ const SingleProductDetails = () => {
 
   useEffect(() => {
     if (typeof singleProductId === "string") {
-      const productId = parseInt(singleProductId, 10); // Convert to number
+      const productId = parseInt(singleProductId, 10);
       const singleProd = localStorageProducts?.find(
         (product) => product?.id === productId
       );

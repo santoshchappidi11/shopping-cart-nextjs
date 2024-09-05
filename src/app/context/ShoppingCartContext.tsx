@@ -33,9 +33,6 @@ interface myContextData {
   searchQuery: string;
   dispatch: Dispatch<any>;
   filterDispatch: Dispatch<any>;
-  // totalPrice: number;
-  // totalDiscount: number;
-  // actualDiscountTotal: number;
 }
 
 const shoppingContext = createContext<myContextData | undefined>(undefined);
@@ -153,28 +150,6 @@ export const ShoppingProvider = ({ children }: { children: ReactNode }) => {
     filterReducer,
     filterInitialState
   );
-  // const [total, setTotal] = useState<number>(0);
-  // const [discountedTotal, setDiscountedTotal] = useState<number>(0);
-  // const [actualDiscount, setActualDiscount] = useState<number>(0);
-
-  // // CALCULATE TOTAL PRICE
-
-  // useEffect(() => {
-  //   const allProductsTotalPrice = state?.products?.reduce(
-  //     (acc: any, item: product) => {
-  //       return acc + parseInt(item?.price) * item?.qty;
-  //     },
-  //     0
-  //   );
-
-  //   setTotal(allProductsTotalPrice);
-
-  //   // Calculate 20% off
-  //   const discount = 0.2;
-  //   const finalPrice = allProductsTotalPrice - allProductsTotalPrice * discount;
-  //   setDiscountedTotal(finalPrice);
-  //   setActualDiscount(total && total - finalPrice);
-  // }, [state, total]);
 
   return (
     <shoppingContext.Provider
@@ -188,9 +163,6 @@ export const ShoppingProvider = ({ children }: { children: ReactNode }) => {
         searchQuery: filterState.searchQuery,
         dispatch: dispatch,
         filterDispatch: filterDispatch,
-        // totalPrice: total,
-        // totalDiscount: discountedTotal,
-        // actualDiscountTotal: actualDiscount,
       }}
     >
       {children}

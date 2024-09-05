@@ -14,8 +14,6 @@ import Link from "next/link";
 const Cart = () => {
   const { cartProducts, dispatch } = useMyContext();
 
-  // console.log(cartProducts, "cart prod");
-
   const [total, setTotal] = useState<number>();
   const [discountedTotal, setDiscountedTotal] = useState<number>();
   const [actualDiscount, setActualDiscount] = useState<number>();

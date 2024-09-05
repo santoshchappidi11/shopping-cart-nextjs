@@ -20,8 +20,6 @@ const CartQuantity: React.FC<quantityProps> = ({
   const [count, setCount] = useState<number>(0);
 
   const IncrementCount = (item: any) => {
-    // console.log(item, "id here");
-
     dispatch({
       type: "INCREMENT_QTY",
       payload: item,
@@ -29,8 +27,6 @@ const CartQuantity: React.FC<quantityProps> = ({
   };
 
   const decrementCount = (item: any) => {
-    // console.log(item, "id here");
-
     dispatch({
       type: "DECREMENT_QTY",
       payload: item,
@@ -43,7 +39,6 @@ const CartQuantity: React.FC<quantityProps> = ({
 
   return (
     <div className="w-1/5 flex justify-center items-center">
-      {/* <button onClick={() => decrementCount(item)}>-</button> */}
       <FontAwesomeIcon
         icon={faMinus}
         size="sm"
@@ -60,7 +55,6 @@ const CartQuantity: React.FC<quantityProps> = ({
         onClick={() => IncrementCount(item)}
         className="cursor-pointer"
       />
-      {/* <button onClick={() => IncrementCount(item)}>+</button> */}
     </div>
   );
 };

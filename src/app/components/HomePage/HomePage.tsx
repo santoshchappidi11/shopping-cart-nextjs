@@ -6,7 +6,6 @@ import banner1 from "../../../Images/banner.jpg";
 import banner2 from "../../../Images/banner-2.jpg";
 import AllProducts from "../Products/AllProducts";
 import Filter from "./Filter";
-// import banner3 from "../../../Images/banner-3.jpg";
 
 const HomePage = () => {
   const banners = [banner1, banner2];
