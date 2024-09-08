@@ -149,9 +149,9 @@ const Cart = () => {
             </div>
           )}
         </div>
-        <div className="h-auto w-1/4 rounded-md sticky top-24 bg-gray-100">
-          <div className="pt-5">
-            <h2 className="text-2xl font-medium px-5 border-b border-b-gray-300 pb-5">
+        <div className="h-auto w-1/4 rounded-md sticky top-24 bg-gray-100 mt-7">
+          <div className="pt-5 flex justify-center items-center bg-gray-200">
+            <h2 className="text-2xl font-medium px-5 pb-5 uppercase">
               Summary
             </h2>
           </div>
@@ -196,9 +196,9 @@ const Cart = () => {
                   .replace("₹", "₹ ")}
               </span>
             </div>
-            <div className="w-full h-auto flex justify-center items-center">
+            <div className="w-full h-auto flex justify-center items-center bottom-0">
               <button
-                className="rounded-md w-11/12 py-2 my-10 cursor-pointer bg-black text-white hover:bg-gray-800"
+                className="rounded-b-md w-full py-3 mt-5 cursor-pointer bg-black text-white hover:bg-gray-800 text-lg font-semibold"
                 onClick={() => handleCheckoutCart()}
               >
                 CHECKOUT
