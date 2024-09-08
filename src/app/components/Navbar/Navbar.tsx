@@ -43,15 +43,17 @@ const Navbar = () => {
         </div>
       </div>
       <Link href={"/CartPage"}>
-        <div className="w-auto flex justify-center items-center">
+        <div className="w-auto flex justify-center items-center border border-gray-200 rounded-md p-2">
           <FontAwesomeIcon
             icon={faShoppingBag}
             size="sm"
             className="h-10 w-10 cursor-pointer"
           />
-          <p className="cursor-pointer text-lg">
-            <b className="text-2xl mx-1">{cartProducts?.length}</b>
-          </p>
+          {cartProducts?.length > 0 && (
+            <p className="cursor-pointer text-lg bg-gray-200 rounded-md p-1 mx-1">
+              <b className="text-2xl mx-1">{cartProducts?.length}</b>
+            </p>
+          )}
         </div>
       </Link>
     </div>
