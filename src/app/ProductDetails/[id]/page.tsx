@@ -105,7 +105,7 @@ const SingleProductDetails = () => {
               )}
             </div>
           </div>
-          <div className="h-auto w-2/5 mt-16">
+          <div className="h-auto w-2/5 mt-16 bg-gradient-to-r from-white to-gray-100 pr-5 py-5 rounded-md">
             <div className="h-auto">
               <h2 className="font-semibold text-2xl pb-5">
                 {singleProduct?.fullName}
