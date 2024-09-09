@@ -54,6 +54,12 @@ const Cart = () => {
     } else {
       setSaving(0);
     }
+
+    if (total && total >= 2000) {
+      setDeliveryCharges(0);
+    } else {
+      setDeliveryCharges(50);
+    }
   }, [cartProducts, total, deliveryCharges, discountedTotal]);
 
   useEffect(() => {
@@ -193,15 +199,20 @@ const Cart = () => {
               </span>
             </div>
             <div className=" flex justify-between items-center px-5  pb-5 font-semibold">
-              <p className="text-wrap w-auto uppercase text-gray-700">
-                delivery charges
-              </p>
+              <div>
+                <p className="text-wrap w-auto uppercase text-gray-700">
+                  delivery charges
+                </p>
+              </div>
               <span className="text-red-600 font-semibold">
                 {deliveryCharges
                   ?.toLocaleString("en-IN", currencyOptions)
                   .replace("₹", "₹ ")}
               </span>
             </div>
+            <p className="text-xs w-full text-center text-gray-600 font-normal">
+              Min purchase has to be 2000 or more for free delivery.
+            </p>
           </div>
           <div className="border-t border-t-gray-300 pt-5">
             <div className="flex justify-between items-center px-4">
