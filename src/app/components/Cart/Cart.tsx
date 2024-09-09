@@ -1,6 +1,6 @@
 "use client";
 
-import { faXmark, faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+import { faNoteSticky, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -19,6 +19,10 @@ const Cart = () => {
   const [actualDiscount, setActualDiscount] = useState<number>();
   const [totalItems, setTotalItems] = useState<number>();
   const [deliveryCharges, setDeliveryCharges] = useState<number>(50);
+  const [saving, setSaving] = useState<number>(0);
+
+  console.log(total, "total");
+  console.log(discountedTotal, "total after dicount");
 
   const currencyOptions: Intl.NumberFormatOptions = {
     style: "currency",
@@ -44,7 +48,13 @@ const Cart = () => {
       );
       setActualDiscount(total && total - finalPrice);
     }
-  }, [cartProducts, total, deliveryCharges]);
+
+    if (total && discountedTotal) {
+      setSaving(total - discountedTotal);
+    } else {
+      setSaving(0);
+    }
+  }, [cartProducts, total, deliveryCharges, discountedTotal]);
 
   useEffect(() => {
     const allItems = cartProducts.reduce<number>(
@@ -152,34 +162,41 @@ const Cart = () => {
         <div className="h-auto w-1/4 rounded-md sticky top-24 bg-gray-100 mt-7">
           <div className="pt-5 flex justify-center items-center bg-gray-200">
             <h2 className="text-2xl font-medium px-5 pb-5 uppercase">
-              Summary
+              <FontAwesomeIcon icon={faNoteSticky} /> Summary
             </h2>
           </div>
-          <div className="pt-5 pb-5">
-            <div className=" flex justify-between items-center px-5 pb-5">
-              <p>{cartProducts?.length > 1 ? "ITEMS" : "ITEM"}</p>
-              <span className="text-red-600 font-medium">{totalItems}</span>
+          <div className="pt-5 pb-2">
+            <div className=" flex justify-between items-center px-5 pb-5 font-semibold">
+              <p className="uppercase text-gray-700">
+                {cartProducts?.length > 1 ? "total items" : "item"}
+              </p>
+              <span className="text-red-600 font-semibold">{totalItems}</span>
             </div>
-            <div className=" flex justify-between items-center px-5  pb-5">
-              <p>TOTAL</p>
-              <span className="text-red-600 font-medium">
+            <div className=" flex justify-between items-center px-5  pb-5 font-semibold">
+              <p className="uppercase text-gray-700">item total</p>
+              <span className="text-red-600 font-semibold">
                 {" "}
                 {total
                   ?.toLocaleString("en-IN", currencyOptions)
                   .replace("₹", "₹ ")}
               </span>
             </div>
-            <div className=" flex justify-between items-center px-5  pb-5">
-              <p>DISCOUNT (20% off)</p>
-              <span className="text-red-600 font-medium">
+            <div className=" flex justify-between items-center px-5  pb-5 font-semibold">
+              <p className="uppercase text-gray-700">
+                discount{" "}
+                <span className="lowercase font-medium">(20% off)</span>
+              </p>
+              <span className="text-red-600 font-semibold">
                 {actualDiscount
                   ?.toLocaleString("en-IN", currencyOptions)
                   .replace("₹", "₹ ")}
               </span>
             </div>
-            <div className=" flex justify-between items-center px-5  pb-5">
-              <p className="text-wrap w-auto">DELIVERY CHARGES</p>
-              <span className="text-red-600 font-medium">
+            <div className=" flex justify-between items-center px-5  pb-5 font-semibold">
+              <p className="text-wrap w-auto uppercase text-gray-700">
+                delivery charges
+              </p>
+              <span className="text-red-600 font-semibold">
                 {deliveryCharges
                   ?.toLocaleString("en-IN", currencyOptions)
                   .replace("₹", "₹ ")}
@@ -187,14 +204,26 @@ const Cart = () => {
             </div>
           </div>
           <div className="border-t border-t-gray-300 pt-5">
-            <div className="flex justify-between items-center px-5 ">
-              <h2>TOTAL PRICE</h2>
-              <span className="text-red-600 font-medium">
+            <div className="flex justify-between items-center px-4">
+              <div>
                 {" "}
-                {discountedTotal
-                  ?.toLocaleString("en-IN", currencyOptions)
-                  .replace("₹", "₹ ")}
-              </span>
+                <h2 className="uppercase font-semibold text-xl">total price</h2>
+                <p className="text-xs text-gray-500 font-medium">
+                  Incl. all taxes and charges
+                </p>
+              </div>
+              <div className="flex justify-center items-center flex-col">
+                {" "}
+                <span className="text-red-600 text-xl font-semibold">
+                  {" "}
+                  {discountedTotal
+                    ?.toLocaleString("en-IN", currencyOptions)
+                    .replace("₹", "₹ ")}
+                </span>
+                <span className="uppercase text-xs text-green-600 font-semibold bg-gray-200 px-1 py-1">
+                  saving ₹{saving}
+                </span>
+              </div>
             </div>
             <div className="w-full h-auto flex justify-center items-center bottom-0">
               <button
