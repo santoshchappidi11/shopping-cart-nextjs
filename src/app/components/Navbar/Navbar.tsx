@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="h-auto w-full border border-gray-200 flex justify-between items-center px-20 fixed top-0 bg-white z-20">
+    <div className="h-auto w-full border border-gray-200 flex justify-between items-center md:px-20 px-8 fixed top-0 bg-white z-20">
       <div className="w-auto">
         <Link href={"/"}>
           {" "}
@@ -27,8 +27,8 @@ const Navbar = () => {
           </h1>
         </Link>
       </div>
-      <div className="w-1/2 h-20 flex justify-center items-center">
-        <div className="w-5/6 flex justify-center items-center border border-gray-400 rounded-md">
+      <div className="w-1/2 h-20 flex justify-center items-center ">
+        <div className="md:w-5/6 flex justify-center items-center border border-gray-400 rounded-md px-1">
           <input
             type="text"
             placeholder="search something..."
@@ -37,8 +37,8 @@ const Navbar = () => {
           />
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
-            size="sm"
-            className="h-6 w-6 cursor-pointer"
+            size="xl"
+            className="cursor-pointer"
           />
         </div>
       </div>
@@ -46,7 +46,7 @@ const Navbar = () => {
         <div className="w-auto flex justify-center items-center border border-gray-200 rounded-md p-2">
           <FontAwesomeIcon
             icon={faShoppingBag}
-            size="sm"
+            size="2xl"
             className="h-10 w-10 cursor-pointer"
           />
           {cartProducts?.length > 0 && (

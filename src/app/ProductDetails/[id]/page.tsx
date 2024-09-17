@@ -93,8 +93,8 @@ const SingleProductDetails = () => {
     <>
       <Navbar />
       <div className="h-auto w-full py-5 px-10 mt-20">
-        <div className=" h-auto w-full flex justify-start items-start ">
-          <div className=" sticky top-2 h-screen w-3/5 flex justify-start items-center pr-10 ">
+        <div className=" h-auto w-full lg:flex justify-center lg:items-start">
+          <div className="lg:sticky lg:top-2 h-screen lg:w-3/5 flex justify-start items-center lg:pr-10  ">
             <div className="h-4/5 w-full border border-gray-300 py-12 bg-white rounded-md">
               {singleProduct?.image && (
                 <Image
@@ -105,9 +105,9 @@ const SingleProductDetails = () => {
               )}
             </div>
           </div>
-          <div className="h-auto w-2/5 mt-16 bg-gradient-to-r from-white to-gray-100 pr-5 py-5 rounded-md">
+          <div className="h-auto lg:w-2/5 mt-16 bg-gradient-to-r from-white to-gray-100 px-5 py-5 rounded-md">
             <div className="h-auto">
-              <h2 className="font-semibold text-2xl pb-5">
+              <h2 className="h-full w-full font-medium lg:font-semibold text-2xl pb-5 text-wrap">
                 {singleProduct?.fullName}
               </h2>
               <div className="my-5 border-t border-t-slate-200 border-b border-b-slate-200 py-5">
@@ -178,7 +178,7 @@ const SingleProductDetails = () => {
                 )}
               </div>
             </div>
-            <div className="h-auto w-4/5 p2-5 my-10">
+            <div className="h-auto sm:w-4/5 w-full p2-5 my-10 ">
               <div className="h-auto w-full flex justify-between items-center py-2">
                 <label className="font-semibold">Brand</label>
                 <span className="w-2/6 text-left"> {singleProduct?.brand}</span>
@@ -212,7 +212,7 @@ const SingleProductDetails = () => {
 
             <div className="pt-5 pb-2">
               <h4 className="text-xl font-bold">Product Description</h4>
-              <span className="text-sm font-light">
+              <span className="text-sm font-light text-pretty">
                 {singleProduct?.description}
               </span>
             </div>

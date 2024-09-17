@@ -87,6 +87,8 @@ const Cart = () => {
       type: "CLEAR_CART",
     });
 
+    localStorage.removeItem("cart");
+
     if (cartProducts?.length > 0) {
       toast.success("Thank you for shopping!");
     } else {
@@ -172,39 +174,39 @@ const Cart = () => {
             </h2>
           </div>
           <div className="pt-5 pb-2">
-            <div className=" flex justify-between items-center px-5 pb-5 font-semibold">
+            <div className=" flex justify-between items-center px-5 pb-5 font-medium">
               <p className="uppercase text-gray-700">
                 {cartProducts?.length > 1 ? "total items" : "item"}
               </p>
-              <span className="text-red-600 font-semibold">{totalItems}</span>
+              <span className="text-red-600 font-medium">{totalItems}</span>
             </div>
-            <div className=" flex justify-between items-center px-5  pb-5 font-semibold">
+            <div className=" flex justify-between items-center px-5  pb-5 font-medium">
               <p className="uppercase text-gray-700">item total</p>
-              <span className="text-red-600 font-semibold">
+              <span className="text-red-600 font-medium">
                 {" "}
                 {total
                   ?.toLocaleString("en-IN", currencyOptions)
                   .replace("₹", "₹ ")}
               </span>
             </div>
-            <div className=" flex justify-between items-center px-5  pb-5 font-semibold">
+            <div className=" flex justify-between items-center px-5  pb-5 font-medium">
               <p className="uppercase text-gray-700">
                 discount{" "}
                 <span className="lowercase font-medium">(20% off)</span>
               </p>
-              <span className="text-red-600 font-semibold">
+              <span className="text-red-600 font-medium">
                 {actualDiscount
                   ?.toLocaleString("en-IN", currencyOptions)
                   .replace("₹", "₹ ")}
               </span>
             </div>
-            <div className=" flex justify-between items-center px-5  pb-5 font-semibold">
+            <div className=" flex justify-between items-center px-5 pb-5 font-medium">
               <div>
                 <p className="text-wrap w-auto uppercase text-gray-700">
                   delivery charges
                 </p>
               </div>
-              <span className="text-red-600 font-semibold">
+              <span className="text-red-600 font-medium">
                 {deliveryCharges
                   ?.toLocaleString("en-IN", currencyOptions)
                   .replace("₹", "₹ ")}

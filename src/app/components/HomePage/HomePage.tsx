@@ -19,7 +19,7 @@ const HomePage = () => {
           </div>
         ))}
         <div>
-          <div className="relative h-auto ">
+          {/* <div className="relative h-auto ">
             <video
               src="https://cdn.opstatics.com/store/20170907/assets/images/events/2020/07/tws/video/oneplus-mob-video.mp4"
               autoPlay
@@ -29,12 +29,12 @@ const HomePage = () => {
               className="w-full h-96 object-cover z-10"
             />
             <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-12 will-change-transform"></div>
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className="flex justify-between items-start relative px-5">
+      <div className="5xl:flex-col sm:flex justify-between items-start px-5">
         <Filter />
-        <div className="w-4/5">
+        <div className="lg:w-4/5 md:w-2/3">
           <AllProducts />
         </div>
       </div>

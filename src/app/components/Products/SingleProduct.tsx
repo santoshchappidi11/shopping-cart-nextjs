@@ -40,11 +40,19 @@ const SingleProduct: React.FC<SingleProductProps> = ({ item }) => {
   const { cartProducts, dispatch } = useMyContext();
 
   const handleAddToCart = (item: Product) => {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: item,
-    });
-    toast.success("Item added to cart!");
+    if (item) {
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: item,
+      });
+
+      let LocalStorageProducts = JSON.parse(
+        localStorage.getItem("cart") || "[]"
+      );
+      LocalStorageProducts.push(item);
+      localStorage.setItem("cart", JSON.stringify(LocalStorageProducts));
+      toast.success("Item added to cart!");
+    }
   };
 
   const handleRemoveFromCart = (item: Product) => {
@@ -56,7 +64,7 @@ const SingleProduct: React.FC<SingleProductProps> = ({ item }) => {
   };
 
   return (
-    <div className="h-auto w-80 mx-8 mb-5 pb-0  rounded-md transition-all bg-white">
+    <div className="h-auto w-80 mx-0 mb-5 rounded-md transition-all bg-white">
       <Link
         href={`/ProductDetails/${item.id}`}
         className="block"

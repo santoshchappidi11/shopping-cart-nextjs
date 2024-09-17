@@ -13,9 +13,9 @@ const Filter = () => {
   } = useMyContext();
 
   return (
-    <div className="rounded-sm h-auto w-1/6 pt-5 py-10 sticky top-24">
-      <div className="h-full w-full flex justify-between items-start flex-col pl-10 py-5">
-        <div className="h-auto w-full flex justify-center items-start flex-col my-4">
+    <div className="rounded-sm h-auto w-full xl:w-1/5 lg:w-1/4 sm:w-2/5 pt-5 py-10 sm:sticky sm:top-24 border-r border-r-gray-200 top-0 mx-0">
+      <div className="h-full w-full flex justify-between sm:items-start  items-center flex-col pl-10 py-5">
+        <div className="h-auto w-full flex justify-center sm:items-start items-center flex-col my-4">
           <h2 className="text-gray-600">Categories</h2>
           <label className="mb-4 mt-2 text-sm cursor-pointer">
             <input
@@ -48,7 +48,7 @@ const Filter = () => {
             Wired
           </label>
         </div>
-        <div className="h-auto w-full flex justify-center items-start flex-col my-4">
+        <div className="h-auto w-full flex justify-center sm:items-start  items-center flex-col my-4">
           <h2 className="text-gray-600">Price Range</h2>
           <label className="mb-4 mt-2 text-sm cursor-pointer">
             <input
@@ -81,7 +81,7 @@ const Filter = () => {
             Low Price
           </label>
         </div>
-        <div className="h-auto w-full flex justify-center items-start flex-col my-4">
+        <div className="h-auto w-full flex justify-center sm:items-start  items-center flex-col my-4">
           <h2 className="text-gray-600">Availability</h2>
           <label className="mb-4 mt-2 text-sm cursor-pointer">
             <input
@@ -98,7 +98,7 @@ const Filter = () => {
             In Stock Only
           </label>
         </div>
-        <div className="h-auto w-full flex justify-center items-start flex-col my-4">
+        <div className="h-auto w-full flex justify-center sm:items-start  items-center flex-col my-4">
           <h2 className="text-gray-600">Services</h2>
           <label className="mb-4 mt-2 text-sm cursor-pointer">
             <input

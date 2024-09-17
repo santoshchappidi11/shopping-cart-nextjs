@@ -39,7 +39,7 @@ const shoppingContext = createContext<myContextData | undefined>(undefined);
 
 const initialState = {
   products: shoppingData,
-  cart: [],
+  cart: JSON.parse(localStorage.getItem("cart") || "[]"),
 };
 
 const filterInitialState = {
@@ -150,6 +150,13 @@ export const ShoppingProvider = ({ children }: { children: ReactNode }) => {
     filterReducer,
     filterInitialState
   );
+
+  useEffect(() => {
+    if (state.cart) {
+      console.log(state.cart, "cart from useeffect");
+      localStorage.setItem("cart", JSON.stringify(state.cart));
+    }
+  }, [state]);
 
   return (
     <shoppingContext.Provider
