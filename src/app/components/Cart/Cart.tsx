@@ -100,13 +100,13 @@ const Cart = () => {
     <>
       <Navbar />
 
-      <div className="h-auto w-full lg:flex justify-center items-center lg:items-start mt-24 relative lg:px-16 px-5">
+      <div className="h-auto w-full lg:flex justify-center items-center lg:items-start mt-24 relative lg:px-16 px-5 dark:bg-gray-950 dark:text-white">
         <div className="h-full xl:w-3/4 lg:w-3/5 w-full py-5 md:pr-10 pr-0">
           <div className="flex justify-between items-center pb-10">
             {cartProducts?.length > 0 && (
               <>
-                <h2 className="font-semibold text-2xl">Cart Items</h2>
-                <span className="text-gray-600 font-semibold text-lg">
+                <h2 className="font-semibold text-2xl uppercase">Cart</h2>
+                <span className="text-gray-600 font-semibold text-lg dark:text-gray-400">
                   {totalItems} Items
                 </span>
               </>
@@ -116,7 +116,7 @@ const Cart = () => {
           {cartProducts?.length ? (
             cartProducts?.map((item) => (
               <div
-                className="h-32 w-full flex justify-between items-center my-2 py-2 px-5 bg-gradient-to-r from-white to-gray-100 rounded-md"
+                className="h-32 w-full flex justify-between items-center my-2 py-2 px-5 bg-gradient-to-r from-white to-gray-100 rounded-md dark:from-gray-950 dark:to-gray-800"
                 key={item.id}
               >
                 <div className="h-full w-1/5 ">
@@ -171,22 +171,26 @@ const Cart = () => {
         </div>
         <div className="h-auto xl:w-2/6 lg:w-2/5 w-full flex justify-center items-center sticky lg:top-24">
           {" "}
-          <div className="h-auto xl:w-full lg:w-full md:w-2/3 w-full rounded-md  bg-gray-100 mt-7">
-            <div className="pt-5 flex justify-center items-center bg-gray-200">
+          <div className="h-auto xl:w-full lg:w-full md:w-2/3 w-full rounded-md  bg-gray-100 mt-7 dark:bg-gray-900">
+            <div className="pt-5 flex justify-center items-center bg-gray-200 dark:bg-gray-800 rounded-t-sm">
               <h2 className="text-2xl font-medium px-5 pb-5 uppercase">
                 <FontAwesomeIcon icon={faNoteSticky} /> Summary
               </h2>
             </div>
             <div className="pt-5 pb-2">
               <div className=" flex justify-between items-center px-5 pb-5 font-medium">
-                <p className="uppercase text-gray-700">
+                <p className="uppercase text-gray-700 dark:text-gray-400">
                   {cartProducts?.length > 1 ? "total items" : "item"}
                 </p>
-                <span className="text-red-600 font-medium">{totalItems}</span>
+                <span className="text-red-600 dark:text-red-500 font-medium">
+                  {totalItems}
+                </span>
               </div>
               <div className=" flex justify-between items-center px-5  pb-5 font-medium">
-                <p className="uppercase text-gray-700">item total</p>
-                <span className="text-red-600 font-medium">
+                <p className="uppercase text-gray-700 dark:text-gray-400">
+                  item total
+                </p>
+                <span className="text-red-600 dark:text-red-500 font-medium">
                   {" "}
                   {total
                     ?.toLocaleString("en-IN", currencyOptions)
@@ -194,11 +198,11 @@ const Cart = () => {
                 </span>
               </div>
               <div className=" flex justify-between items-center px-5  pb-5 font-medium">
-                <p className="uppercase text-gray-700">
+                <p className="uppercase text-gray-700 dark:text-gray-400">
                   discount{" "}
                   <span className="lowercase font-medium">(20% off)</span>
                 </p>
-                <span className="text-red-600 font-medium">
+                <span className="text-red-600 dark:text-red-500 font-medium">
                   {actualDiscount
                     ?.toLocaleString("en-IN", currencyOptions)
                     .replace("₹", "₹ ")}
@@ -206,25 +210,25 @@ const Cart = () => {
               </div>
               <div className=" flex justify-between items-center px-5 pb-5 font-medium">
                 <div>
-                  <p className="text-wrap w-auto uppercase text-gray-700">
+                  <p className="text-wrap w-auto uppercase text-gray-700 dark:text-gray-400">
                     delivery charges
                   </p>
                 </div>
-                <span className="text-red-600 font-medium">
+                <span className="text-red-600 dark:text-red-500 font-medium">
                   {deliveryCharges
                     ?.toLocaleString("en-IN", currencyOptions)
                     .replace("₹", "₹ ")}
                 </span>
               </div>
-              <p className="text-xs w-full text-center text-gray-600 font-normal">
+              <p className="text-xs w-full text-center text-gray-600 font-normal dark:text-gray-500">
                 Min purchase has to be 2000 or more for free delivery.
               </p>
             </div>
-            <div className="border-t border-t-gray-300 pt-5">
+            <div className="border-t border-t-gray-300 pt-5 dark:border-t-gray-700">
               <div className="flex justify-between items-center px-4">
                 <div>
                   {" "}
-                  <h2 className="uppercase font-semibold text-xl">
+                  <h2 className="uppercase font-semibold text-xl dark:text-gray-50">
                     total price
                   </h2>
                   <p className="text-xs text-gray-500 font-medium">
@@ -233,20 +237,23 @@ const Cart = () => {
                 </div>
                 <div className="flex justify-center items-center flex-col">
                   {" "}
-                  <span className="text-red-600 text-xl font-semibold">
+                  <span className="text-red-600 dark:text-red-500 text-xl font-semibold">
                     {" "}
                     {discountedTotal
                       ?.toLocaleString("en-IN", currencyOptions)
                       .replace("₹", "₹ ")}
                   </span>
-                  <span className="uppercase text-xs text-green-600 font-semibold bg-gray-200 px-1 py-1">
-                    saving ₹{saving}
+                  <span className="uppercase text-xs text-green-600 dark:text-green-500 font-semibold bg-gray-200 px-1 py-1 dark:bg-gray-800">
+                    saving{" "}
+                    {saving
+                      ?.toLocaleString("en-IN", currencyOptions)
+                      .replace("₹", "₹ ")}
                   </span>
                 </div>
               </div>
               <div className="w-full h-auto flex justify-center items-center bottom-0">
                 <button
-                  className="rounded-b-md w-full py-3 mt-5 cursor-pointer bg-black text-white hover:bg-gray-800 text-lg font-semibold"
+                  className="rounded-b-md w-full py-3 mt-5 cursor-pointer bg-black text-white hover:bg-gray-800 text-lg font-semibold dark:bg-gray-200 dark:hover:bg-gray-50 dark:text-gray-950"
                   onClick={() => handleCheckoutCart()}
                 >
                   CHECKOUT

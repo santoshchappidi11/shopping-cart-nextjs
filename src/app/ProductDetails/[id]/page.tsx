@@ -92,10 +92,10 @@ const SingleProductDetails = () => {
   return (
     <>
       <Navbar />
-      <div className="h-auto w-full py-5 px-10 mt-20">
+      <div className="h-auto w-full py-5 px-10 mt-20 dark:bg-gray-950 dark:text-white">
         <div className=" h-auto w-full lg:flex justify-center lg:items-start">
           <div className="lg:sticky lg:top-2 h-screen lg:w-3/5 flex justify-start items-center lg:pr-10  ">
-            <div className="h-4/5 w-full border border-gray-300 py-12 bg-white rounded-md">
+            <div className="h-4/5 w-full border border-gray-300 py-12 bg-white rounded-md dark:bg-gray-950 dark:border-gray-800">
               {singleProduct?.image && (
                 <Image
                   src={singleProduct?.image}
@@ -105,12 +105,12 @@ const SingleProductDetails = () => {
               )}
             </div>
           </div>
-          <div className="h-auto lg:w-2/5 mt-16 bg-gradient-to-r from-white to-gray-100 px-5 py-5 rounded-md">
+          <div className="h-auto lg:w-2/5 mt-16 bg-gradient-to-r from-white to-gray-100 px-5 py-5 rounded-md  dark:from-gray-900">
             <div className="h-auto">
               <h2 className="h-full w-full font-medium lg:font-semibold text-2xl pb-5 text-wrap">
                 {singleProduct?.fullName}
               </h2>
-              <div className="my-5 border-t border-t-slate-200 border-b border-b-slate-200 py-5">
+              <div className="my-5 border-t border-t-slate-200 border-b border-b-slate-200 py-5 dark:border-t-slate-800 dark:border-b-slate-800 ">
                 <Rating
                   rating={singleProduct?.rating || 0}
                   numReviews={singleProduct?.numReviews || 0}
@@ -129,7 +129,7 @@ const SingleProductDetails = () => {
                         InStock
                       </span>
                     ) : (
-                      <span className="bg-gray-400 text-white px-2 py-1 rounded-md text-base font-medium">
+                      <span className="bg-gray-400 text-white px-2 py-1 rounded-md text-base font-medium dark:bg-gray-700">
                         Out of stock
                       </span>
                     )}
@@ -137,7 +137,7 @@ const SingleProductDetails = () => {
                 </p>
 
                 <div className="my-10">
-                  <p className="text-base italic border-b border-b-gray-300">
+                  <p className="text-base italic border-b border-b-gray-300 dark:border-b-slate-800 ">
                     {singleProduct?.delivery
                       ? "Fast delivery"
                       : "delivery in 4 days"}{" "}
@@ -169,7 +169,10 @@ const SingleProductDetails = () => {
                   </button>
                 ) : (
                   <button
-                    className="h-auto w-auto px-4 py-2 bg-black text-white rounded-md"
+                    className={`${
+                      !singleProduct?.inStock &&
+                      "pointer-events-none cursor-not-allowed"
+                    } h-auto w-auto px-4 py-2 bg-black text-white rounded-md dark:bg-gray-100 dark:text-black`}
                     onClick={() => handleAddToCart(singleProduct)}
                   >
                     Add to{" "}

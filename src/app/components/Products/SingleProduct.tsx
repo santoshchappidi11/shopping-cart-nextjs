@@ -94,7 +94,7 @@ const SingleProduct: React.FC<SingleProductProps> = ({ item }) => {
               className={`px-2 rounded-md text-sm ${
                 item.inStock
                   ? "bg-green-500 text-white"
-                  : "bg-gray-400 text-white"
+                  : "bg-gray-400 text-white dark:bg-gray-600"
               }`}
             >
               {item.inStock ? "In Stock" : "Out of stock"}

@@ -4,18 +4,23 @@ import Image from "next/image";
 import React from "react";
 import banner1 from "../../../Images/banner.jpg";
 import banner2 from "../../../Images/banner-2.jpg";
+import banner4 from "../../../Images/banner-4.webp";
 import AllProducts from "../Products/AllProducts";
 import Filter from "./Filter";
 
 const HomePage = () => {
-  const banners = [banner1, banner2];
+  const banners = [banner1, banner2, banner4];
 
   return (
     <div className="">
-      <div className="h-auto w-11/12 m-auto mt-36 mb-20">
+      <div className="h-auto w-11/12 m-auto sm:mt-40 mb-20 mt-52 ">
         {banners.map((banner, i) => (
-          <div key={i} className="mb-0 h-auto">
-            <Image src={banner} alt="banner" className="" />
+          <div key={i} className="mb-0 h-full w-full ">
+            <Image
+              src={banner}
+              alt="banner"
+              className="sm:h-full h-96 w-full object-cover"
+            />
           </div>
         ))}
         <div>

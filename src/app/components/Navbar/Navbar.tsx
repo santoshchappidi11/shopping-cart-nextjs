@@ -50,7 +50,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="h-auto w-full border border-gray-200 dark:border-gray-800 sm:px-10 px-5 fixed top-0 bg-white dark:bg-gray-950 z-20">
+    <div className="h-auto w-full sm:p-0 pt-2 border border-gray-200 dark:border-gray-800 sm:px-10 px-5 fixed top-0 bg-white dark:bg-gray-950 z-20">
       <div className="w-full h-auto flex justify-between items-center">
         <div className="w-auto">
           <Link href={"/"}>
@@ -94,7 +94,7 @@ const Navbar = () => {
               className="h-10 w-10 cursor-pointer"
             />
             {cartProducts?.length > 0 && (
-              <p className="cursor-pointer text-lg bg-gray-200 dark:bg-gray-700 rounded-md p-1 mx-1">
+              <p className="cursor-pointer text-lg bg-gray-200 dark:bg-gray-800 rounded-md p-1 mx-1">
                 <b className="text-2xl mx-1">{cartProducts?.length}</b>
               </p>
             )}
