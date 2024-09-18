@@ -64,7 +64,7 @@ const SingleProduct: React.FC<SingleProductProps> = ({ item }) => {
   };
 
   return (
-    <div className="h-auto w-80 mx-0 mb-5 rounded-md transition-all bg-white">
+    <div className="h-auto w-80 mx-0 mb-5 rounded-md transition-all bg-white dark:bg-gray-950">
       <Link
         href={`/ProductDetails/${item.id}`}
         className="block"
@@ -74,11 +74,11 @@ const SingleProduct: React.FC<SingleProductProps> = ({ item }) => {
           <Image
             src={item.image}
             alt={item.name}
-            className="h-full w-full object-contain rounded-md"
+            className="h-full w-full object-contain rounded-sm"
           />
         </div>
       </Link>
-      <div className="pt-3 px-0 pb-0 mx-3 mt-5 bg-gradient-to-r from-white to-gray-100 rounded-md">
+      <div className="pt-3 px-0 pb-0 mx-3 mt-5 bg-gradient-to-r from-white to-gray-100 rounded-md dark:from-gray-800">
         <div className="px-3">
           {" "}
           <h1 className="text-xl font-medium my-2 leading-tight">
@@ -121,7 +121,7 @@ const SingleProduct: React.FC<SingleProductProps> = ({ item }) => {
             </button>
           ) : (
             <button
-              className="w-full px-8 py-2 cursor-pointer rounded-bl-md rounded-br-md bg-black text-white hover:bg-slate-800"
+              className="w-full px-8 py-2 cursor-pointer rounded-bl-md rounded-br-md bg-black text-white hover:bg-slate-800 dark:bg-gradient-to-r from-gray-800 "
               onClick={(e) => {
                 e.stopPropagation();
                 handleAddToCart(item);

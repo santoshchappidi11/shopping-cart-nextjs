@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { createContext, ReactNode, useContext, useReducer } from "react";
 import shoppingData from "../store/data";
 import { StaticImageData } from "next/image";
@@ -24,6 +24,8 @@ interface product {
 }
 
 interface myContextData {
+  isDarkMode: string;
+  setIsDarkMode: Dispatch<SetStateAction<string>>;
   products: product[];
   cartProducts: product[];
   connectivity: string;
@@ -150,6 +152,7 @@ export const ShoppingProvider = ({ children }: { children: ReactNode }) => {
     filterReducer,
     filterInitialState
   );
+  const [isDarkMode, setIsDarkMode] = useState<string>("light");
 
   useEffect(() => {
     if (state.cart) {
@@ -161,6 +164,8 @@ export const ShoppingProvider = ({ children }: { children: ReactNode }) => {
   return (
     <shoppingContext.Provider
       value={{
+        isDarkMode,
+        setIsDarkMode,
         products: state.products,
         cartProducts: state.cart,
         connectivity: filterState.connectivity,

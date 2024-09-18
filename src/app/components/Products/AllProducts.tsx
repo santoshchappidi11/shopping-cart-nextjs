@@ -78,13 +78,17 @@ const AllProducts = () => {
   const filteredProducts = transformedProducts();
 
   return (
-    <div className="h-auto w-full grid xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-1 place-items-center ">
-      {filteredProducts.length > 0 ? (
-        filteredProducts.map((item: product) => (
-          <SingleProduct item={item} key={item.id} />
-        ))
+    <>
+      {" "}
+      {filteredProducts?.length ? (
+        <div className="h-auto w-full grid xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-1 place-items-center">
+          {filteredProducts.length > 0 &&
+            filteredProducts.map((item: product) => (
+              <SingleProduct item={item} key={item.id} />
+            ))}
+        </div>
       ) : (
-        <div className="h-96 w-full mt-20 flex flex-col justify-center items-center ">
+        <div className="h-96 w-full mt-20 flex flex-col justify-center items-center m-auto">
           <Image
             src={emptyCartImage}
             alt="empty-cart"
@@ -93,7 +97,7 @@ const AllProducts = () => {
           <h2 className="text-xl font-medium text-gray-400">No Items!</h2>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
