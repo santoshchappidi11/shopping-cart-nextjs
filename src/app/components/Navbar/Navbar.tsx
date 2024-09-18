@@ -40,7 +40,7 @@ const Navbar = () => {
         document.documentElement.classList.remove("dark");
       }
     }
-  }, []);
+  }, [setIsDarkMode]);
 
   const handleSearchQuery = (e: any) => {
     filterDispatch({

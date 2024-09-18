@@ -41,7 +41,7 @@ const shoppingContext = createContext<myContextData | undefined>(undefined);
 
 const initialState = {
   products: shoppingData,
-  cart: JSON.parse(localStorage.getItem("cart") || "[]"),
+  cart: [],
 };
 
 const filterInitialState = {
@@ -54,6 +54,13 @@ const filterInitialState = {
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
+    case "LOAD_LS_CART": {
+      return {
+        ...state,
+        cart: action.payload,
+      };
+    }
+
     case "ADD_TO_CART": {
       return {
         ...state,
@@ -155,8 +162,15 @@ export const ShoppingProvider = ({ children }: { children: ReactNode }) => {
   const [isDarkMode, setIsDarkMode] = useState<string>("light");
 
   useEffect(() => {
-    if (state.cart) {
-      console.log(state.cart, "cart from useeffect");
+    const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    if (localStorageCart) {
+      dispatch({ type: "LOAD_LS_CART", payload: localStorageCart });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (state.cart.length > 0) {
       localStorage.setItem("cart", JSON.stringify(state.cart));
     }
   }, [state]);
