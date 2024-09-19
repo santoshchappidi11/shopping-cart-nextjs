@@ -10,9 +10,10 @@ import CartQuantity from "./CartQuantity";
 import toast from "react-hot-toast";
 import emptyCartImage from "./../../../Images/empty-cart.png";
 import Link from "next/link";
+import Skeleton from "react-loading-skeleton";
 
 const Cart = () => {
-  const { cartProducts, dispatch } = useMyContext();
+  const { cartProducts, dispatch, isDarkMode } = useMyContext();
 
   const [total, setTotal] = useState<number>();
   const [discountedTotal, setDiscountedTotal] = useState<number>();
@@ -20,9 +21,7 @@ const Cart = () => {
   const [totalItems, setTotalItems] = useState<number>();
   const [deliveryCharges, setDeliveryCharges] = useState<number>(50);
   const [saving, setSaving] = useState<number>(0);
-
-  console.log(total, "total");
-  console.log(discountedTotal, "total after dicount");
+  const [isLoading, setIsLoading] = useState(true);
 
   const currencyOptions: Intl.NumberFormatOptions = {
     style: "currency",
@@ -95,6 +94,84 @@ const Cart = () => {
       toast.error("Add items to cart to checkout!");
     }
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Simulate a loading time of 2 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const skeletonBaseColor = isDarkMode === "dark" ? "#333333" : "#e0e0e0";
+  const skeletonHighlightColor = isDarkMode === "dark" ? "#444444" : "#f5f5f5";
+
+  if (isLoading) {
+    return (
+      <>
+        <Navbar />
+        <div className="h-auto w-full lg:flex justify-center items-center lg:items-start mt-24 relative lg:px-16 px-5 dark:bg-gray-950 dark:text-white">
+          <div className="h-full xl:w-3/4 lg:w-3/5 w-full py-5 md:pr-10 pr-0">
+            <Skeleton
+              height={40}
+              baseColor={skeletonBaseColor}
+              highlightColor={skeletonHighlightColor}
+              count={1}
+            />
+
+            {cartProducts?.length ? (
+              <div className="mt-20">
+                <Skeleton
+                  height={100}
+                  baseColor={skeletonBaseColor}
+                  highlightColor={skeletonHighlightColor}
+                  count={cartProducts.length}
+                  className="mt-2"
+                />
+              </div>
+            ) : (
+              <Skeleton
+                height={450}
+                baseColor={skeletonBaseColor}
+                highlightColor={skeletonHighlightColor}
+                count={1}
+                className="mt-20"
+              />
+            )}
+          </div>
+          <div className="h-auto xl:w-2/6 lg:w-2/5 w-full flex justify-center items-center sticky lg:top-24">
+            <div className="h-auto xl:w-full lg:w-full md:w-2/3 w-full rounded-md bg-gray-100 mt-7 dark:bg-gray-900">
+              <div className="pt-5 flex justify-center items-center bg-gray-200 dark:bg-gray-800 rounded-t-sm">
+                <Skeleton
+                  height={35}
+                  width={150}
+                  baseColor={skeletonBaseColor}
+                  highlightColor={skeletonHighlightColor}
+                  count={1}
+                />
+              </div>
+              <div className="pt-5 pb-2">
+                <Skeleton
+                  height={35}
+                  baseColor={skeletonBaseColor}
+                  highlightColor={skeletonHighlightColor}
+                  count={4}
+                  className="mt-5"
+                />
+                <Skeleton
+                  height={80}
+                  baseColor={skeletonBaseColor}
+                  highlightColor={skeletonHighlightColor}
+                  count={1}
+                  className="mt-10"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>

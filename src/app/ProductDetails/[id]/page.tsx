@@ -13,11 +13,10 @@ import Image, { StaticImageData } from "next/image";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Skeleton from "react-loading-skeleton";
 
 const SingleProductDetails = () => {
-  const { cartProducts, dispatch } = useMyContext();
-
-  console.log(cartProducts, "cart products");
+  const { cartProducts, dispatch, isDarkMode } = useMyContext();
 
   const { id } = useParams();
   const singleProductId = id;
@@ -46,6 +45,7 @@ const SingleProductDetails = () => {
 
   const [singleProduct, setSingleProduct] = useState<product>();
   const [isAddToCart, setIsAddToCart] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const storedProducts = localStorage.getItem("products");
@@ -88,6 +88,69 @@ const SingleProductDetails = () => {
 
     toast.success("Item removed from cart!");
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Simulate a loading time of 2 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const skeletonBaseColor = isDarkMode === "dark" ? "#333333" : "#e0e0e0";
+  const skeletonHighlightColor = isDarkMode === "dark" ? "#444444" : "#f5f5f5";
+
+  if (isLoading) {
+    return (
+      <>
+        <Navbar />
+        <div className="h-auto w-full lg:flex justify-center lg:items-start">
+          <div className="lg:sticky lg:top-2 h-screen lg:w-3/5 flex justify-start items-center lg:pr-10">
+            <div className="h-4/5 w-full border border-gray-300 py-12 bg-white rounded-md dark:bg-gray-950 dark:border-gray-800">
+              <Skeleton
+                height={500}
+                baseColor={skeletonBaseColor}
+                highlightColor={skeletonHighlightColor}
+              />
+            </div>
+          </div>
+          <div className="h-auto lg:w-2/5 mt-16 bg-gradient-to-r from-white to-gray-100 px-5 py-5 rounded-md dark:from-gray-900">
+            <div className="h-auto mt-12">
+              <Skeleton
+                height={80}
+                baseColor={skeletonBaseColor}
+                highlightColor={skeletonHighlightColor}
+              />
+              <Skeleton
+                height={50}
+                baseColor={skeletonBaseColor}
+                highlightColor={skeletonHighlightColor}
+                className="mt-10"
+              />
+              <Skeleton
+                height={100}
+                baseColor={skeletonBaseColor}
+                highlightColor={skeletonHighlightColor}
+                className="mt-10"
+              />
+              <Skeleton
+                height={150}
+                baseColor={skeletonBaseColor}
+                highlightColor={skeletonHighlightColor}
+                className="mt-10"
+              />
+              <Skeleton
+                height={250}
+                baseColor={skeletonBaseColor}
+                highlightColor={skeletonHighlightColor}
+                className="my-10"
+              />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
