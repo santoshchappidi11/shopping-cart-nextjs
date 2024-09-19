@@ -80,21 +80,21 @@ const SingleProduct: React.FC<SingleProductProps> = ({ item }) => {
           <SingleProductSkeleton />
         </>
       ) : (
-        <div className="h-auto w-80 mx-0 mb-5 rounded-md transition-all bg-white dark:bg-gray-950">
+        <div className="h-auto w-80  mb-5 rounded-md transition-all dark:bg-gray-950 bg-gradient-to-r from-white to-gray-100  dark:from-gray-800">
           <Link
             href={`/ProductDetails/${item.id}`}
-            className="block"
+            className="block mx-2 my-2"
             aria-label={`View details of ${item.name}`}
           >
             <div className="h-80 w-full">
               <Image
                 src={item.image}
                 alt={item.name}
-                className="h-full w-full object-contain rounded-sm"
+                className="h-full w-full object-contain rounded-sm hover:scale-110 transition-all"
               />
             </div>
           </Link>
-          <div className="pt-3 px-0 pb-0 mx-3 mt-5 bg-gradient-to-r from-white to-gray-100 rounded-md dark:from-gray-800">
+          <div className="pt-3 px-0 pb-0 mx-0 mt-5">
             <div className="px-3">
               {" "}
               <h1 className="text-xl font-medium my-2 leading-tight">

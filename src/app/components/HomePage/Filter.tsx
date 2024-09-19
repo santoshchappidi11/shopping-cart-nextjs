@@ -112,7 +112,7 @@ const Filter = () => {
   }
 
   return (
-    <div className="rounded-sm h-auto w-full xl:w-1/5 lg:w-1/4 sm:w-2/5 pt-5 py-10 sm:sticky sm:top-24 sm:border-r border-r-gray-200 dark:sm:border-r-gray-700 top-0 mx-0">
+    <div className="rounded-sm h-auto w-full xl:w-1/5 lg:w-1/4 sm:w-2/5 my-10 pt-5 py-10 sm:sticky sm:top-24 sm:border-r border-r-gray-200 dark:sm:border-r-gray-800 top-0 mx-0">
       <div className="h-full w-full flex justify-between sm:items-start  items-center flex-col sm:pl-10  py-5">
         {/* Categories Section */}
         <div className="h-auto sm:w-full flex justify-center sm:items-start flex-col my-4">

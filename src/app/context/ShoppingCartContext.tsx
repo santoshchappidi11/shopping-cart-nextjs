@@ -170,7 +170,7 @@ export const ShoppingProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (state.cart.length > 0) {
+    if (state?.cart?.length > 0) {
       localStorage.setItem("cart", JSON.stringify(state.cart));
     }
   }, [state]);

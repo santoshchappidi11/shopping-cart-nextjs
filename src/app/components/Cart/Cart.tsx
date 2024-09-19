@@ -144,10 +144,11 @@ const Cart = () => {
               <div className="pt-5 flex justify-center items-center bg-gray-200 dark:bg-gray-800 rounded-t-sm">
                 <Skeleton
                   height={35}
-                  width={150}
+                  width={200}
                   baseColor={skeletonBaseColor}
                   highlightColor={skeletonHighlightColor}
                   count={1}
+                  className="mb-5"
                 />
               </div>
               <div className="pt-5 pb-2">

@@ -1,13 +1,13 @@
-import image1 from "../../Images/img-1.jpg";
-import image2 from "../../Images/img-2.jpg";
-import image3 from "../../Images/img-3.jpg";
-import image4 from "../../Images/img-4.jpg";
-import image5 from "../../Images/img-5.jpg";
-import image6 from "../../Images/img-6.jpg";
-import image7 from "../../Images/img-7.jpg";
-import image8 from "../../Images/img-8.jpg";
-import image9 from "../../Images/img-9.jpg";
-import image10 from "../../Images/img-10.jpg";
+import image1 from "../../Images/img-1.png";
+import image2 from "../../Images/img-2.png";
+import image3 from "../../Images/img-3.png";
+import image4 from "../../Images/img-4.png";
+import image5 from "../../Images/img-5.png";
+import image6 from "../../Images/img-6.png";
+import image7 from "../../Images/img-7.png";
+import image8 from "../../Images/img-8.png";
+import image9 from "../../Images/img-9.png";
+import image10 from "../../Images/img-10.png";
 
 const shoppingData = [
   {
