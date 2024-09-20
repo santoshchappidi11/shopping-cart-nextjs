@@ -21,7 +21,7 @@ const SingleProductSkeleton = () => {
           highlightColor={skeletonHighlightColor}
         />
       </div>
-      <div className="pt-3 px-0 pb-0 mx-3 mt-5 bg-gradient-to-r from-white to-gray-100 rounded-md dark:from-gray-800">
+      <div className="pt-3 mt-5 bg-gradient-to-r from-white to-gray-100 rounded-md dark:from-gray-800">
         <div className="px-3">
           <Skeleton
             width="80%"
@@ -61,13 +61,15 @@ const SingleProductSkeleton = () => {
           </div>
         </div>
         <div className="h-auto w-full flex justify-between items-center flex-col mt-3 mb-0">
-          <Skeleton
-            width="100%"
-            height={40}
-            className="rounded-bl-md rounded-br-md"
-            baseColor={skeletonBaseColor}
-            highlightColor={skeletonHighlightColor}
-          />
+          <div className="h-auto w-full">
+            <Skeleton
+              // width={300}
+              height={40}
+              className="rounded-bl-md rounded-br-md"
+              baseColor={skeletonBaseColor}
+              highlightColor={skeletonHighlightColor}
+            />
+          </div>
         </div>
       </div>
     </div>
